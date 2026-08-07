@@ -440,7 +440,15 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                   onChange={(e) => setSelectedDepartment(e.target.value)}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-slate-900 dark:text-white"
                 >
-                  {departments.map((d) => (
+                  {(departments.length > 0 ? departments : [
+                    { name: 'Cardiology & Cardiac Surgery' },
+                    { name: 'Neurology & Neurosurgery' },
+                    { name: 'Pediatrics & Neonatology' },
+                    { name: 'Orthopedics & Joint Replacement' },
+                    { name: 'Gastroenterology & Hepatology' },
+                    { name: 'Ophthalmology (Dr. RP Centre)' },
+                    { name: 'General Medicine & Diabetology' }
+                  ]).map((d: any) => (
                     <option key={d.name} value={d.name}>
                       {d.name}
                     </option>
