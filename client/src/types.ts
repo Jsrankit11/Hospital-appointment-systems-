@@ -1,4 +1,4 @@
-export type UserRole = 'SUPER_ADMIN' | 'DOCTOR' | 'RECEPTIONIST' | 'LAB_TECHNICIAN' | 'PHARMACIST' | 'PATIENT';
+export type UserRole = 'SUPER_ADMIN' | 'DOCTOR' | 'NURSE' | 'PATIENT' | 'RECEPTIONIST' | 'LAB_TECHNICIAN' | 'PHARMACIST' | 'BILLING_OFFICER';
 
 export interface User {
   id: string;
@@ -6,97 +6,136 @@ export interface User {
   email: string;
   mobile: string;
   role: UserRole;
-  department?: string;
-  qualification?: string;
+  department: string;
+  badge?: string;
   hprId?: string;
-  opdRoom?: string;
   abhaNumber?: string;
   abhaAddress?: string;
-  badge?: string;
   avatar?: string;
-  consultationFee?: number;
+  city?: string;
+  state?: string;
+  passwordPreview?: string;
 }
 
 export interface Patient {
   id: string;
   name: string;
   mobile: string;
-  email: string;
-  abhaNumber?: string;
-  abhaAddress?: string;
-  aadhaarLast4?: string;
+  email?: string;
+  abhaNumber: string;
+  abhaAddress: string;
+  aadhaarLast4: string;
   gender: 'Male' | 'Female' | 'Other';
-  dob: string;
   age: number;
+  dob: string;
   bloodGroup: string;
   address: string;
   district: string;
   state: string;
+  city?: string;
   pincode: string;
   emergencyContact: string;
   insuranceProvider?: string;
-  insurancePolicyNo?: string;
-  allergies: string[];
-  chronicConditions: string[];
+  allergies?: string[];
+  chronicConditions?: string[];
   photoUrl?: string;
   createdAt: string;
 }
 
 export interface Appointment {
   id: string;
-  tokenNumber: string;
+  tokenNumber: number;
   patientId: string;
   patientName: string;
+  mobile?: string;
+  email?: string;
   abhaNumber?: string;
-  doctorId: string;
-  doctorName: string;
+  gender?: string;
+  age?: number;
   department: string;
-  opdRoom: string;
-  date: string;
+  doctorName: string;
+  status: any;
+  priority: any;
   timeSlot: string;
-  type: string;
-  priority: 'Normal' | 'Urgent' | 'Emergency';
-  status: 'Waiting' | 'In-Consultation' | 'Completed' | 'Cancelled';
-  fee: number;
-  paymentStatus: 'PAID' | 'PENDING';
-  symptoms: string;
+  opdRoom?: string;
+  type?: string;
+  date?: string;
+  symptoms?: string;
+  vitals?: {
+    bp: string;
+    pulse: number;
+    temp: number;
+    spo2: number;
+  };
   createdAt: string;
 }
 
-export interface Vitals {
-  bloodPressure?: string;
-  pulseRate?: string;
-  spo2?: string;
-  temperature?: string;
-  weight?: string;
-  height?: string;
-  bmi?: string;
-}
-
-export interface PrescriptionItem {
-  medicine: string;
-  dosage: string;
-  duration: string;
-  instructions: string;
-}
+export interface OPDQueueItem extends Appointment {}
 
 export interface EHR {
   id: string;
   patientId: string;
   patientName: string;
-  abhaNumber?: string;
-  doctorId: string;
   doctorName: string;
   department: string;
-  date: string;
-  vitals: Vitals;
-  symptoms: string;
+  chiefComplaint: string;
   diagnosis: string;
-  clinicalNotes: string;
-  prescriptions: PrescriptionItem[];
-  recommendedTests: string[];
-  followUpDate: string;
+  icdCode?: string;
+  prescription: {
+    medicine: string;
+    dosage: string;
+    frequency: string;
+    duration: string;
+    instructions: string;
+  }[];
+  labOrders: string[];
+  followUpDate?: string;
   createdAt: string;
+}
+
+export interface BloodStock {
+  bloodGroup: string;
+  unitsAvailable: number;
+  component: string;
+  location?: string;
+  hospitalName?: string;
+  contactNumber?: string;
+  lastUpdated?: string;
+}
+
+export interface Bed {
+  id: string;
+  bedNumber: string;
+  ward: 'ICU' | 'GENERAL_MALE' | 'GENERAL_FEMALE' | 'EMERGENCY' | 'MATERNITY' | 'PEDIATRIC' | string;
+  type: 'VENTILATOR' | 'OXYGEN' | 'NORMAL' | 'ISOLATION' | string;
+  status: any;
+  patientName?: string;
+  currentPatient?: {
+    id: string;
+    name: string;
+    admissionDate: string;
+    doctorName: string;
+  };
+  dailyRate?: number;
+  pricePerDay?: number;
+  oxygenSupport?: boolean;
+  ventilator?: boolean;
+}
+
+export interface Medicine {
+  id: string;
+  code?: string;
+  name: string;
+  genericName: string;
+  manufacturer?: string;
+  batchNumber: string;
+  stock: number;
+  stockQuantity?: number;
+  unit: string;
+  price: number;
+  expiryDate: string;
+  category: 'ANTIBIOTIC' | 'ANALGESIC' | 'CARDIAC' | 'DIABETIC' | 'CRITICAL_CARE' | string;
+  requiresPrescription: boolean;
 }
 
 export interface LabTest {
@@ -105,103 +144,70 @@ export interface LabTest {
   patientName: string;
   abhaNumber?: string;
   testName: string;
-  category: string;
-  doctorName: string;
-  sampleType: string;
-  status: 'Sample Collection Pending' | 'In-Progress' | 'Completed';
-  isCritical: boolean;
+  sampleType?: string;
+  category: 'PATHOLOGY' | 'RADIOLOGY' | 'BIOCHEMISTRY' | 'MICROBIOLOGY' | string;
+  status: any;
+  result?: string;
   findings?: string;
-  reportUrl?: string;
-  downloadBadge?: string;
+  referenceRange?: string;
+  unit?: string;
+  isPanicValue?: boolean;
+  isCritical?: boolean;
+  prescribedBy?: string;
+  doctorName?: string;
+  testedBy?: string;
   technician?: string;
-  verifiedBy?: string;
   createdAt: string;
-}
-
-export interface Bed {
-  id: string;
-  ward: string;
-  bedNumber: string;
-  type: string;
-  status: 'Available' | 'Occupied' | 'Maintenance';
-  patientName?: string | null;
-  patientId?: string | null;
-  oxygenSupport: boolean;
-  ventilator: boolean;
-  dailyRate: number;
-  allocatedAt?: string;
-}
-
-export interface Medicine {
-  code: string;
-  name: string;
-  category: string;
-  batchNumber: string;
-  stockQuantity: number;
-  price: number;
-  expiryDate: string;
-  manufacturer: string;
-}
-
-export interface BloodStock {
-  bloodGroup: string;
-  unitsAvailable: number;
-  component: string;
-  status: string;
-  lastUpdated: string;
-}
-
-export interface BillItem {
-  name: string;
-  amount: number;
+  completedAt?: string;
 }
 
 export interface Bill {
   id: string;
-  invoiceNumber: string;
+  invoiceNumber?: string;
   patientId: string;
   patientName: string;
-  abhaNumber?: string;
   serviceType: string;
-  items: BillItem[];
+  items: { description: string; amount: number; gstRate: number }[];
   totalAmount: number;
   discount: number;
-  tax: number;
   netAmount: number;
-  paymentMethod: 'UPI' | 'Razorpay' | 'Stripe' | 'Cash';
-  transactionId: string;
-  status: 'PAID' | 'PENDING' | 'REFUNDED';
+  status?: any;
+  paymentStatus: 'PAID' | 'PENDING' | 'PARTIAL';
+  paymentMode?: 'UPI' | 'CASH' | 'CARD' | 'INSURANCE_PMJAY' | string;
+  paymentMethod?: string;
+  transactionId?: string;
+  receiptNumber?: string;
   createdAt: string;
 }
 
 export interface ABDMConsent {
   id: string;
-  consentRequestId: string;
+  consentId: string;
   patientId: string;
   patientName: string;
-  abhaNumber: string;
-  requesterHospital: string;
+  requesterName: string;
+  requesterHospital?: string;
+  abhaNumber?: string;
   purpose: string;
-  healthInfoTypes: string[];
-  dateFrom: string;
-  dateTo: string;
-  expiryDate: string;
+  hiTypes: string[];
   status: 'REQUESTED' | 'GRANTED' | 'DENIED' | 'REVOKED';
-  grantedAt?: string;
+  dateRange?: { from: string; to: string };
+  dateFrom?: string;
+  dateTo?: string;
+  expiryDate: string;
+  createdAt: string;
 }
 
 export interface HospitalStats {
   totalPatients: number;
-  totalOPD: number;
-  waitingOPD: number;
-  totalBeds: number;
+  activeOPD: number;
   occupiedBeds: number;
-  bedOccupancyRate: number;
-  totalRevenue: number;
-  totalLabTests: number;
-  criticalLabCount: number;
-  totalMedsStock: number;
-  lowStockMeds: number;
-  abhaLinkedCount: number;
-  abhaAdoptionRate: number;
+  totalBeds: number;
+  dailyRevenue: number;
+  labTestsPending: number;
+  totalOPD?: number;
+  waitingOPD?: number;
+  bedOccupancyRate?: number;
+  totalRevenue?: number;
+  abhaAdoptionRate?: number;
 }
