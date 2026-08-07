@@ -142,7 +142,7 @@ export const JSRHeader: React.FC<JSRHeaderProps> = ({
           {/* Prominent Hospital Admin Desk Button */}
           <button
             onClick={onToggleConsole}
-            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-black transition border-2 shadow-xl shrink-0 hover:scale-105 ring-4 ring-offset-1 ${
+            className={`hidden md:flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-black transition border-2 shadow-xl shrink-0 hover:scale-105 ring-4 ring-offset-1 ${
               isConsoleView
                 ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-amber-500/30 ring-amber-500/30 ring-offset-white dark:ring-offset-slate-900'
                 : 'bg-gradient-to-r from-rose-600 to-red-600 text-white border-red-400/40 shadow-red-700/40 ring-red-500/30 ring-offset-white dark:ring-offset-slate-900 animate-pulse'
