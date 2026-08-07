@@ -45,6 +45,28 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
   const [selectedSlot, setSelectedSlot] = useState('09:30 AM - 10:30 AM (Morning Session)');
   const [symptoms, setSymptoms] = useState('Routine Outpatient Health Checkup & Consultation');
 
+  // Dynamically assign doctor based on department
+  useEffect(() => {
+    const assignDoctor = (dept: string) => {
+      const doctors: Record<string, string> = {
+        'Cardiology & Cardiac Surgery': 'Dr. Arvind Sharma (Senior Consultant)',
+        'Neurology & Neurosurgery': 'Dr. Meera Reddy (Head of Dept)',
+        'Pediatrics & Neonatology': 'Dr. Sanjay Gupta (Consultant)',
+        'Orthopedics & Joint Replacement': 'Dr. Vikram Singh (Surgeon)',
+        'Gastroenterology & Hepatology': 'Dr. Neha Patel (Specialist)',
+        'Ophthalmology (Dr. RP Centre)': 'Dr. Amit Kumar (Surgeon)',
+        'General Medicine & Diabetology': 'Dr. Rakesh Verma (Senior Physician)',
+        'General Medicine': 'Dr. Rakesh Verma (Senior Physician)',
+        'Cardiology & Pulmonary Care': 'Dr. Arvind Sharma (Senior Consultant)',
+        'Orthopedics & Sports Injury Centre': 'Dr. Vikram Singh (Surgeon)',
+        'Burns & Plastic Surgery': 'Dr. Sunita Jain (Plastic Surgeon)',
+        'Pediatrics & Child Health': 'Dr. Sanjay Gupta (Consultant)'
+      };
+      return doctors[dept] || 'Dr. Medical Officer (Consultant)';
+    };
+    setSelectedDoctor(assignDoctor(selectedDepartment));
+  }, [selectedDepartment]);
+
   // Step 4: Booked Appointment Confirmation
   const [bookedAppointment, setBookedAppointment] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);
@@ -430,12 +452,10 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
                   Assigned Consultant Doctor / Unit
                 </label>
-                <input
-                  type="text"
-                  value={selectedDoctor}
-                  onChange={(e) => setSelectedDoctor(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-white font-semibold"
-                />
+                <div className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-300 font-semibold cursor-not-allowed flex items-center justify-between">
+                  <span>{selectedDoctor}</span>
+                  <span className="px-2 py-0.5 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-[10px] uppercase">Assigned</span>
+                </div>
               </div>
             </div>
 
