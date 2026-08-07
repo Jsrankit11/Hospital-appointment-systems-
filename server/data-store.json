@@ -1,0 +1,1788 @@
+{
+  "users": [
+    {
+      "id": "PAT-1008",
+      "name": "vishal Chaudhary",
+      "email": "dev@codealpha.com",
+      "mobile": "0881090553645",
+      "password": "$2a$10$ytupLp4AXjZbZlxBn7X/3OIBZq/KbqHX/.dVOj8PO.VkaqhwLe9qy",
+      "plainPasswordSaved": "admin123",
+      "role": "PATIENT",
+      "department": "Citizen Health Portal",
+      "gender": "Male",
+      "age": 32,
+      "state": "Delhi",
+      "city": "New Delhi",
+      "abhaNumber": "",
+      "abhaAddress": "",
+      "aadhaarLast4": "8821",
+      "avatar": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "badge": "Registered Citizen",
+      "createdAt": "2026-08-07T19:17:11.823Z"
+    },
+    {
+      "id": "USR-ADMIN-01",
+      "name": "Dr. Randeep Guleria (Medical Director)",
+      "email": "admin@hams.gov.in",
+      "mobile": "9811223344",
+      "password": "$2a$10$MlP5yQODEjua2.Fxz.jax.jS4D.cSBy0Wi7jo9e1d6P2AOwn4xH.C",
+      "plainPasswordSaved": "Admin@123",
+      "role": "SUPER_ADMIN",
+      "department": "Hospital Administration & ORS Portal Governance",
+      "avatar": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "badge": "Super Admin",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "USR-DOC-01",
+      "name": "Dr. Arvind Sharma",
+      "email": "arvind.cardio@hams.gov.in",
+      "mobile": "9822334455",
+      "password": "$2a$10$kxawVdR6EV84PHLIWDeyiOMFcBHBWZ2IMNJMGLC8Dabk7cXrHmx2u",
+      "plainPasswordSaved": "Doctor@123",
+      "role": "DOCTOR",
+      "department": "Cardiology & Cardiac Surgery",
+      "qualification": "MD, DM (Cardiology), FACC",
+      "hprId": "HPR-DOC-98214",
+      "opdRoom": "Room 104, CNC Block A",
+      "avatar": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "badge": "Senior Cardiologist",
+      "consultationFee": 800,
+      "city": "New Delhi",
+      "state": "Delhi",
+      "createdAt": "2026-01-05T00:00:00.000Z"
+    },
+    {
+      "id": "USR-DOC-02",
+      "name": "Dr. Priya Nair",
+      "email": "priya.neuro@hams.gov.in",
+      "mobile": "9833445566",
+      "password": "$2a$10$kxawVdR6EV84PHLIWDeyiOMFcBHBWZ2IMNJMGLC8Dabk7cXrHmx2u",
+      "plainPasswordSaved": "Doctor@123",
+      "role": "DOCTOR",
+      "department": "Neurology & Brain Spine",
+      "qualification": "MS, MCh (Neurosurgery)",
+      "hprId": "HPR-DOC-61028",
+      "opdRoom": "Room 208, Block B",
+      "avatar": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "badge": "Chief Neurosurgeon",
+      "consultationFee": 1000,
+      "city": "New Delhi",
+      "state": "Delhi",
+      "createdAt": "2026-01-10T00:00:00.000Z"
+    },
+    {
+      "id": "USR-RECEP-01",
+      "name": "Sunita Mehra",
+      "email": "reception@hams.gov.in",
+      "mobile": "9855667788",
+      "password": "$2a$10$MlP5yQODEjua2.Fxz.jax.jS4D.cSBy0Wi7jo9e1d6P2AOwn4xH.C",
+      "plainPasswordSaved": "Admin@123",
+      "role": "RECEPTIONIST",
+      "department": "Central OPD Registration & Helpdesk",
+      "avatar": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "badge": "Senior Registrar",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "createdAt": "2026-01-20T00:00:00.000Z"
+    },
+    {
+      "id": "USR-LAB-01",
+      "name": "Anand Kulkarni",
+      "email": "lab@hams.gov.in",
+      "mobile": "9866778899",
+      "password": "$2a$10$MlP5yQODEjua2.Fxz.jax.jS4D.cSBy0Wi7jo9e1d6P2AOwn4xH.C",
+      "plainPasswordSaved": "Admin@123",
+      "role": "LAB_TECHNICIAN",
+      "department": "Central Pathology & Diagnostic Lab",
+      "avatar": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "badge": "Lead Pathologist",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "createdAt": "2026-01-20T00:00:00.000Z"
+    },
+    {
+      "id": "USR-PHARM-01",
+      "name": "Vikas Gupta",
+      "email": "pharmacy@hams.gov.in",
+      "mobile": "9877889900",
+      "password": "$2a$10$MlP5yQODEjua2.Fxz.jax.jS4D.cSBy0Wi7jo9e1d6P2AOwn4xH.C",
+      "plainPasswordSaved": "Admin@123",
+      "role": "PHARMACIST",
+      "department": "Jan Aushadhi & Central Pharmacy",
+      "avatar": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "badge": "Chief Pharmacist",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "createdAt": "2026-01-20T00:00:00.000Z"
+    },
+    {
+      "id": "USR-PAT-01",
+      "name": "Rohan Sharma",
+      "email": "rohan.sharma@gmail.com",
+      "mobile": "9899001122",
+      "password": "$2a$10$R1.OULwlIQ4NHm5xuUjBruLamGtf7B4Of.GTRPYF/6DRZdwbkKjU.",
+      "plainPasswordSaved": "RohanNewPass@2026",
+      "role": "PATIENT",
+      "department": "Citizen Health Portal",
+      "abhaNumber": "91-4829-1092-3341",
+      "abhaAddress": "rohansharma88@abdm",
+      "gender": "Male",
+      "age": 34,
+      "bloodGroup": "B+",
+      "city": "Noida / New Delhi",
+      "state": "Delhi",
+      "avatar": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "badge": "Ayushman Beneficiary",
+      "createdAt": "2026-02-01T00:00:00.000Z",
+      "updatedAt": "2026-08-07T19:15:03.840Z"
+    }
+  ],
+  "patients": [
+    {
+      "id": "PAT-1008",
+      "name": "vishal Chaudhary",
+      "mobile": "0881090553645",
+      "email": "dev@codealpha.com",
+      "abhaNumber": "",
+      "abhaAddress": "",
+      "aadhaarLast4": "8821",
+      "gender": "Male",
+      "age": 32,
+      "dob": "1995-01-01",
+      "bloodGroup": "B+",
+      "address": "New Delhi, Delhi",
+      "district": "New Delhi",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "pincode": "110001",
+      "emergencyContact": "0881090553645",
+      "insuranceProvider": "PM-JAY Ayushman Card",
+      "allergies": [],
+      "chronicConditions": [],
+      "photoUrl": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "createdAt": "2026-08-07T19:17:11.824Z"
+    },
+    {
+      "id": "PAT-1001",
+      "name": "Rohan Sharma",
+      "mobile": "9899001122",
+      "email": "rohan.sharma@gmail.com",
+      "abhaNumber": "91-4829-1092-3341",
+      "abhaAddress": "rohansharma88@abdm",
+      "aadhaarLast4": "8821",
+      "gender": "Male",
+      "dob": "1992-04-12",
+      "age": 34,
+      "bloodGroup": "B+",
+      "address": "Flat 402, Lotus Greens, Sector 78",
+      "district": "Noida / Delhi NCR",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "pincode": "201301",
+      "emergencyContact": "Meenakshi Sharma (Wife) - 9899001133",
+      "insuranceProvider": "PM-JAY Ayushman Card (5 Lakh Cover)",
+      "insurancePolicyNo": "PMJAY-UP-992104",
+      "allergies": [
+        "Penicillin",
+        "Sulfa drugs"
+      ],
+      "chronicConditions": [
+        "Mild Hypertension"
+      ],
+      "photoUrl": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "createdAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "PAT-1002",
+      "name": "Sunita Devi",
+      "mobile": "9811447722",
+      "email": "sunita.devi@rediffmail.com",
+      "abhaNumber": "91-7712-4491-8832",
+      "abhaAddress": "sunitadevi99@abdm",
+      "aadhaarLast4": "3419",
+      "gender": "Female",
+      "dob": "1978-08-22",
+      "age": 48,
+      "bloodGroup": "O+",
+      "address": "House 12, Gali 3, Lajpat Nagar",
+      "district": "South Delhi",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "pincode": "110024",
+      "emergencyContact": "Rameshwar Lal (Husband) - 9811447733",
+      "insuranceProvider": "Star Health Family Health Optima",
+      "insurancePolicyNo": "SH-DEL-441829",
+      "allergies": [
+        "None known"
+      ],
+      "chronicConditions": [
+        "Type 2 Diabetes Mellitus",
+        "Hypothyroidism"
+      ],
+      "photoUrl": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "createdAt": "2026-02-10T00:00:00.000Z"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "ORS-CMC-2026-102",
+      "tokenNumber": "102",
+      "patientId": "PAT-1008",
+      "patientName": "vishal Chaudhary",
+      "mobile": "0881090553645",
+      "abhaNumber": "91-4829-1092-3341",
+      "hospitalId": "HOSP-CMC-VELLORE",
+      "hospitalName": "Christian Medical College & Hospital (CMC Vellore)",
+      "doctorId": "USR-DOC-01",
+      "doctorName": "Dr. Arvind Sharma (Senior Consultant)",
+      "department": "Hematology & Bone Marrow",
+      "opdRoom": "Room 104, CNC OPD Block",
+      "date": "2026-08-08",
+      "timeSlot": "11:30 AM - 12:30 PM",
+      "type": "Online Registration System (ORS) Booking",
+      "priority": "Normal",
+      "status": "In-Consultation",
+      "fee": 0,
+      "paymentStatus": "PAID",
+      "symptoms": "Routine Outpatient Health Checkup & Consultation",
+      "barcode": "*ORS-CMC-2026-102*",
+      "qrData": "https://ors.gov.in/verify?id=ORS-CMC-2026-102&pat=vishal%20Chaudhary&hosp=Christian%20Medical%20College%20%26%20Hospital%20(CMC%20Vellore)",
+      "createdAt": "2026-08-07T19:24:40.697Z",
+      "updatedAt": "2026-08-07T19:25:11.369Z"
+    },
+    {
+      "id": "ORS-DEL-2026-101",
+      "tokenNumber": "101",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "mobile": "9899001122",
+      "abhaNumber": "91-4829-1092-3341",
+      "hospitalName": "All India Institute of Medical Sciences (AIIMS New Delhi)",
+      "hospitalId": "HOSP-AIIMS-DELHI",
+      "doctorId": "USR-DOC-01",
+      "doctorName": "Dr. Arvind Sharma (Senior Consultant)",
+      "department": "Cardiology & Cardiac Surgery",
+      "opdRoom": "Room 104, CNC Block A",
+      "date": "2026-08-08",
+      "timeSlot": "09:30 AM - 10:00 AM (Slot #1)",
+      "type": "New Online OPD Registration",
+      "priority": "Normal",
+      "status": "Completed",
+      "fee": 0,
+      "paymentStatus": "PAID",
+      "symptoms": "Chest tightness, elevated resting pulse, fatigue after mild exertion",
+      "barcode": "*ORS-AIIMS-2026-101*",
+      "qrData": "https://ors.gov.in/verify?id=ORS-DEL-2026-101&pat=Rohan%20Sharma&hosp=AIIMS",
+      "createdAt": "2026-08-07T19:14:57.572Z"
+    }
+  ],
+  "ehrs": [
+    {
+      "id": "EHR-1786130379452",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "doctorId": "USR-DOC-01",
+      "doctorName": "Dr. Arvind Sharma",
+      "department": "Cardiology",
+      "date": "2026-08-07",
+      "vitals": {
+        "bloodPressure": "124/82 mmHg",
+        "pulseRate": "76 bpm",
+        "spo2": "99%",
+        "temperature": "98.6 °F",
+        "weight": "72 kg",
+        "height": "172 cm",
+        "bmi": "23.6"
+      },
+      "symptoms": "General weakness and fatigue post-viral episode",
+      "diagnosis": "Mild Post-Viral Asthenia & Seasonal Allergy",
+      "clinicalNotes": "Patient examined. Chest bilateral clear, S1 S2 normal. Advised adequate hydration, balanced diet, and prescribed medications.",
+      "prescriptions": [
+        {
+          "medicine": "Augmentin 625 Duo",
+          "dosage": "1 Tab Twice Daily (Morning & Night)",
+          "duration": "5 Days",
+          "instructions": "After meals"
+        },
+        {
+          "medicine": "Pantoprazole 40mg DSR",
+          "dosage": "1 Tab Daily (Morning)",
+          "duration": "10 Days",
+          "instructions": "Empty stomach"
+        }
+      ],
+      "recommendedTests": [
+        "Complete Blood Count (CBC)",
+        "Lipid Profile Comprehensive",
+        "Liver Function Test (LFT)",
+        "12-Lead Electrocardiogram (ECG)",
+        "HbA1c Glycated Hemoglobin",
+        "Chest X-Ray PA View"
+      ],
+      "followUpDate": "2026-08-21",
+      "createdAt": "2026-08-07T19:19:39.453Z"
+    },
+    {
+      "id": "EHR-1786130376020",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "doctorId": "USR-DOC-01",
+      "doctorName": "Dr. Arvind Sharma",
+      "department": "Cardiology",
+      "date": "2026-08-07",
+      "vitals": {
+        "bloodPressure": "124/82 mmHg",
+        "pulseRate": "76 bpm",
+        "spo2": "99%",
+        "temperature": "98.6 °F",
+        "weight": "72 kg",
+        "height": "172 cm",
+        "bmi": "23.6"
+      },
+      "symptoms": "General weakness and fatigue post-viral episode",
+      "diagnosis": "Mild Post-Viral Asthenia & Seasonal Allergy",
+      "clinicalNotes": "Patient examined. Chest bilateral clear, S1 S2 normal. Advised adequate hydration, balanced diet, and prescribed medications.",
+      "prescriptions": [
+        {
+          "medicine": "Augmentin 625 Duo",
+          "dosage": "1 Tab Twice Daily (Morning & Night)",
+          "duration": "5 Days",
+          "instructions": "After meals"
+        },
+        {
+          "medicine": "Pantoprazole 40mg DSR",
+          "dosage": "1 Tab Daily (Morning)",
+          "duration": "10 Days",
+          "instructions": "Empty stomach"
+        }
+      ],
+      "recommendedTests": [
+        "Complete Blood Count (CBC)",
+        "Lipid Profile Comprehensive",
+        "Liver Function Test (LFT)",
+        "12-Lead Electrocardiogram (ECG)",
+        "HbA1c Glycated Hemoglobin",
+        "Chest X-Ray PA View"
+      ],
+      "followUpDate": "2026-08-21",
+      "createdAt": "2026-08-07T19:19:36.020Z"
+    }
+  ],
+  "labTests": [
+    {
+      "id": "LAB-1786130379453-47",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "Chest X-Ray PA View",
+      "category": "Biochemistry",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Completed",
+      "isCritical": true,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "/uploads/lab_LAB-1786130379453-47.pdf",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:39.453Z",
+      "verifiedBy": "Dr. Sunita Kapoor, MD (Pathology)",
+      "updatedAt": "2026-08-07T19:20:02.392Z"
+    },
+    {
+      "id": "LAB-1786130379453-15",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "HbA1c Glycated Hemoglobin",
+      "category": "Biochemistry",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Sample Collection Pending",
+      "isCritical": false,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:39.453Z"
+    },
+    {
+      "id": "LAB-1786130379453-35",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "12-Lead Electrocardiogram (ECG)",
+      "category": "Biochemistry",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Sample Collection Pending",
+      "isCritical": false,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:39.453Z"
+    },
+    {
+      "id": "LAB-1786130379453-76",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "Liver Function Test (LFT)",
+      "category": "Biochemistry",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Sample Collection Pending",
+      "isCritical": false,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:39.453Z"
+    },
+    {
+      "id": "LAB-1786130379453-53",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "Lipid Profile Comprehensive",
+      "category": "Biochemistry",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Sample Collection Pending",
+      "isCritical": false,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:39.453Z"
+    },
+    {
+      "id": "LAB-1786130379453-7",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "Complete Blood Count (CBC)",
+      "category": "Hematology",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Sample Collection Pending",
+      "isCritical": false,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:39.453Z"
+    },
+    {
+      "id": "LAB-1786130376021-9",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "Chest X-Ray PA View",
+      "category": "Biochemistry",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Sample Collection Pending",
+      "isCritical": false,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:36.021Z"
+    },
+    {
+      "id": "LAB-1786130376021-90",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "HbA1c Glycated Hemoglobin",
+      "category": "Biochemistry",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Sample Collection Pending",
+      "isCritical": false,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:36.021Z"
+    },
+    {
+      "id": "LAB-1786130376020-68",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "12-Lead Electrocardiogram (ECG)",
+      "category": "Biochemistry",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Sample Collection Pending",
+      "isCritical": false,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:36.020Z"
+    },
+    {
+      "id": "LAB-1786130376020-33",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "Liver Function Test (LFT)",
+      "category": "Biochemistry",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Sample Collection Pending",
+      "isCritical": false,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:36.020Z"
+    },
+    {
+      "id": "LAB-1786130376020-0",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "Lipid Profile Comprehensive",
+      "category": "Biochemistry",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Sample Collection Pending",
+      "isCritical": false,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:36.020Z"
+    },
+    {
+      "id": "LAB-1786130376020-14",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "testName": "Complete Blood Count (CBC)",
+      "category": "Hematology",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Venous Blood / Serum",
+      "status": "Sample Collection Pending",
+      "isCritical": false,
+      "findings": "Sample under lab processing workflow.",
+      "reportUrl": "",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "createdAt": "2026-08-07T19:19:36.020Z"
+    },
+    {
+      "id": "LAB-501",
+      "uhid": "UHID-AIIMS-99214",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "mobile": "9899001122",
+      "abhaNumber": "91-4829-1092-3341",
+      "hospitalName": "All India Institute of Medical Sciences (AIIMS New Delhi)",
+      "testName": "Complete Blood Count (CBC) with ESR",
+      "category": "Hematology",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Whole Blood (EDTA)",
+      "status": "Completed",
+      "isCritical": false,
+      "findings": "Hemoglobin: 14.8 g/dL (Normal: 13.0-17.0), Total Leucocyte Count (TLC): 7,400 /uL, Platelets: 2.8 Lakhs/uL, ESR: 12 mm/hr.",
+      "reportUrl": "/uploads/cbc_rohan_signed.pdf",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "verifiedBy": "Dr. Sunita Kapoor, MD (Pathology)",
+      "createdAt": "2026-08-07T00:00:00.000Z"
+    },
+    {
+      "id": "LAB-502",
+      "uhid": "UHID-AIIMS-99214",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "mobile": "9899001122",
+      "abhaNumber": "91-4829-1092-3341",
+      "hospitalName": "All India Institute of Medical Sciences (AIIMS New Delhi)",
+      "testName": "Lipid Profile Comprehensive",
+      "category": "Biochemistry",
+      "doctorName": "Dr. Arvind Sharma",
+      "sampleType": "Serum (Fasting)",
+      "status": "Completed",
+      "isCritical": true,
+      "findings": "Total Cholesterol: 232 mg/dL (Elevated >200), Triglycerides: 198 mg/dL (Borderline >150), HDL Direct: 42 mg/dL, LDL Direct: 148 mg/dL (Elevated).",
+      "reportUrl": "/uploads/lipid_rohan_signed.pdf",
+      "downloadBadge": "/images/lab_report.gif",
+      "technician": "Anand Kulkarni",
+      "verifiedBy": "Dr. Sunita Kapoor, MD (Pathology)",
+      "createdAt": "2026-08-07T00:00:00.000Z"
+    }
+  ],
+  "beds": [
+    {
+      "id": "BED-ICU-01",
+      "ward": "Critical Care ICU",
+      "bedNumber": "ICU-101",
+      "type": "ICU Ventilator Bed",
+      "status": "Occupied",
+      "patientName": "Balwant Singh",
+      "patientId": "PAT-009",
+      "oxygenSupport": true,
+      "ventilator": true,
+      "dailyRate": 7500
+    },
+    {
+      "id": "BED-ICU-02",
+      "ward": "Critical Care ICU",
+      "bedNumber": "ICU-102",
+      "type": "ICU Ventilator Bed",
+      "status": "Available",
+      "patientName": null,
+      "patientId": null,
+      "oxygenSupport": true,
+      "ventilator": true,
+      "dailyRate": 7500
+    },
+    {
+      "id": "BED-EMG-01",
+      "ward": "Emergency Trauma Ward",
+      "bedNumber": "EMG-01",
+      "type": "Emergency Resuscitation",
+      "status": "Occupied",
+      "patientName": "Deepak Sharma",
+      "patientId": "PAT-012",
+      "oxygenSupport": true,
+      "ventilator": false,
+      "dailyRate": 3500
+    },
+    {
+      "id": "BED-EMG-02",
+      "ward": "Emergency Trauma Ward",
+      "bedNumber": "EMG-02",
+      "type": "Emergency Triage",
+      "status": "Available",
+      "patientName": null,
+      "patientId": null,
+      "oxygenSupport": true,
+      "ventilator": false,
+      "dailyRate": 3500
+    },
+    {
+      "id": "BED-GEN-M01",
+      "ward": "General Ward (Male)",
+      "bedNumber": "GWM-201",
+      "type": "Standard Ward Bed",
+      "status": "Occupied",
+      "patientName": "Mohd. Farooq",
+      "patientId": "PAT-018",
+      "oxygenSupport": false,
+      "ventilator": false,
+      "dailyRate": 1200
+    },
+    {
+      "id": "BED-GEN-M02",
+      "ward": "General Ward (Male)",
+      "bedNumber": "GWM-202",
+      "type": "Standard Ward Bed",
+      "status": "Available",
+      "patientName": null,
+      "patientId": null,
+      "oxygenSupport": false,
+      "ventilator": false,
+      "dailyRate": 1200
+    }
+  ],
+  "medicines": [
+    {
+      "code": "MED-101",
+      "name": "Telmisartan 40mg Tab",
+      "category": "Antihypertensive",
+      "batchNumber": "BAT-2026-991",
+      "stockQuantity": 450,
+      "price": 95,
+      "expiryDate": "2027-11-30",
+      "manufacturer": "Cipla India Ltd."
+    },
+    {
+      "code": "MED-102",
+      "name": "Metoprolol Succinate 25mg ER",
+      "category": "Beta Blocker",
+      "batchNumber": "BAT-2026-442",
+      "stockQuantity": 280,
+      "price": 110,
+      "expiryDate": "2027-09-30",
+      "manufacturer": "Sun Pharma"
+    },
+    {
+      "code": "MED-103",
+      "name": "EcoSprin 75mg Tab",
+      "category": "Antiplatelet",
+      "batchNumber": "BAT-2026-118",
+      "stockQuantity": 800,
+      "price": 28.5,
+      "expiryDate": "2028-02-28",
+      "manufacturer": "USV Pharma"
+    }
+  ],
+  "bills": [
+    {
+      "id": "BILL-901",
+      "invoiceNumber": "INV-2026-08101",
+      "patientId": "PAT-1001",
+      "patientName": "Rohan Sharma",
+      "abhaNumber": "91-4829-1092-3341",
+      "serviceType": "Cardiology OPD Registration & ECG",
+      "items": [
+        {
+          "name": "Dr. Arvind Sharma Consultation",
+          "amount": 0
+        },
+        {
+          "name": "12-Lead ECG Diagnostic",
+          "amount": 150
+        }
+      ],
+      "totalAmount": 150,
+      "discount": 0,
+      "tax": 0,
+      "netAmount": 150,
+      "paymentMethod": "UPI",
+      "transactionId": "UPI-HDFC-992817441029",
+      "status": "PAID",
+      "createdAt": "2026-08-07T10:15:00.000Z"
+    }
+  ],
+  "consents": [],
+  "notifications": [
+    {
+      "id": "NOTIF-680703",
+      "recipient": "0881090553645",
+      "recipientName": "vishal Chaudhary",
+      "channels": [
+        "SMS",
+        "WHATSAPP",
+        "EMAIL"
+      ],
+      "subject": "🏥 JSR Healthcare OPD Appointment Confirmed - Token #102",
+      "message": "Namaste vishal Chaudhary, Your OPD Token #102 is confirmed for Dr. Arvind Sharma (Senior Consultant) (Hematology & Bone Marrow) on 2026-08-08 at 11:30 AM - 12:30 PM. View live queue at JSR Healthcare Portal.",
+      "meta": {
+        "appointmentId": "ORS-CMC-2026-102",
+        "tokenNumber": "102"
+      },
+      "adminNotifiedEmail": "ankitchaudhary8081039@gmail.com",
+      "status": "DELIVERED",
+      "timestamp": "2026-08-07T19:24:40.703Z"
+    },
+    {
+      "id": "NOTIF-232122",
+      "recipient": "ankitchaudhary8081039@gmail.com",
+      "recipientName": "Ankit Chaudhary (Administrator)",
+      "channels": [
+        "EMAIL"
+      ],
+      "subject": "🔑 [JSR LOGIN] User Logged In: vishal Chaudhary (PATIENT)",
+      "message": "User Login Detected in JSR Portal!\nUser: vishal Chaudhary (PATIENT)\nIdentifier: dev@codealpha.com\nEmail: dev@codealpha.com\nMobile: 0881090553645\nTimestamp: 8/8/2026, 12:47:12 am",
+      "meta": {
+        "userId": "PAT-1008",
+        "email": "dev@codealpha.com",
+        "timestamp": "2026-08-07T19:17:12.122Z"
+      },
+      "adminNotifiedEmail": "ankitchaudhary8081039@gmail.com",
+      "status": "DELIVERED",
+      "timestamp": "2026-08-07T19:17:12.122Z"
+    },
+    {
+      "id": "NOTIF-231829",
+      "recipient": "ankitchaudhary8081039@gmail.com",
+      "recipientName": "Ankit Chaudhary (Administrator)",
+      "channels": [
+        "EMAIL",
+        "SMS"
+      ],
+      "subject": "🚨 [JSR PORTAL] New User Registration & Credentials Saved: vishal Chaudhary",
+      "message": "New User Registered in JSR Healthcare!\nName: vishal Chaudhary\nEmail: dev@codealpha.com\nMobile: 0881090553645\nRole: PATIENT\nSaved Password: admin123\nCity: New Delhi\nState: Delhi\nTimestamp: 8/8/2026, 12:47:11 am",
+      "meta": {
+        "userId": "PAT-1008",
+        "email": "dev@codealpha.com",
+        "plainPassword": "admin123",
+        "timestamp": "2026-08-07T19:17:11.829Z"
+      },
+      "adminNotifiedEmail": "ankitchaudhary8081039@gmail.com",
+      "status": "DELIVERED",
+      "timestamp": "2026-08-07T19:17:11.829Z"
+    },
+    {
+      "id": "NOTIF-103873",
+      "recipient": "ankitchaudhary8081039@gmail.com",
+      "recipientName": "Ankit Chaudhary (Administrator)",
+      "channels": [
+        "EMAIL",
+        "SMS"
+      ],
+      "subject": "🔒 [JSR SECURITY] Password Reset: Rohan Sharma (rohan.sharma@gmail.com)",
+      "message": "Password Reset Executed in JSR Healthcare!\nUser: Rohan Sharma\nEmail: rohan.sharma@gmail.com\nMobile: 9899001122\nNew Saved Password: RohanNewPass@2026\nTimestamp: 8/8/2026, 12:45:03 am",
+      "meta": {
+        "userId": "USR-PAT-01",
+        "email": "rohan.sharma@gmail.com",
+        "newPassword": "RohanNewPass@2026",
+        "timestamp": "2026-08-07T19:15:03.873Z"
+      },
+      "adminNotifiedEmail": "ankitchaudhary8081039@gmail.com",
+      "status": "DELIVERED",
+      "timestamp": "2026-08-07T19:15:03.873Z"
+    },
+    {
+      "id": "NOTIF-103696",
+      "recipient": "9899001122",
+      "recipientName": "Rohan Sharma",
+      "channels": [
+        "SMS",
+        "EMAIL"
+      ],
+      "subject": "🔑 [JSR SECURITY] OTP for Password Reset: 499073",
+      "message": "Namaste Rohan Sharma, Your OTP for JSR Portal Password Reset is 499073. Valid for 10 minutes.",
+      "meta": {},
+      "adminNotifiedEmail": "ankitchaudhary8081039@gmail.com",
+      "status": "DELIVERED",
+      "timestamp": "2026-08-07T19:15:03.696Z"
+    }
+  ],
+  "bloodBank": [
+    {
+      "hospital": "AIIMS New Delhi Central Blood Bank",
+      "state": "Delhi",
+      "district": "New Delhi",
+      "bloodGroup": "A+",
+      "unitsAvailable": 18,
+      "component": "Whole Blood & Packed RBC",
+      "status": "Adequate",
+      "contact": "011-26588500",
+      "lastUpdated": "Today"
+    },
+    {
+      "hospital": "AIIMS New Delhi Central Blood Bank",
+      "state": "Delhi",
+      "district": "New Delhi",
+      "bloodGroup": "A-",
+      "unitsAvailable": 6,
+      "component": "Whole Blood & Platelets",
+      "status": "Moderate",
+      "contact": "011-26588500",
+      "lastUpdated": "Today"
+    },
+    {
+      "hospital": "AIIMS New Delhi Central Blood Bank",
+      "state": "Delhi",
+      "district": "New Delhi",
+      "bloodGroup": "B+",
+      "unitsAvailable": 24,
+      "component": "Whole Blood & Fresh Frozen Plasma",
+      "status": "Adequate",
+      "contact": "011-26588500",
+      "lastUpdated": "Today"
+    },
+    {
+      "hospital": "Safdarjung Hospital Regional Blood Centre",
+      "state": "Delhi",
+      "district": "South Delhi",
+      "bloodGroup": "B-",
+      "unitsAvailable": 4,
+      "component": "Packed RBC",
+      "status": "Low Stock Alert",
+      "contact": "011-26707444",
+      "lastUpdated": "Today"
+    },
+    {
+      "hospital": "Safdarjung Hospital Regional Blood Centre",
+      "state": "Delhi",
+      "district": "South Delhi",
+      "bloodGroup": "O+",
+      "unitsAvailable": 32,
+      "component": "Universal Donor RBC",
+      "status": "Adequate",
+      "contact": "011-26707444",
+      "lastUpdated": "Today"
+    },
+    {
+      "hospital": "KEM Hospital Blood Centre Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "bloodGroup": "O+",
+      "unitsAvailable": 28,
+      "component": "Packed RBC",
+      "status": "Adequate",
+      "contact": "022-24107000",
+      "lastUpdated": "Today"
+    },
+    {
+      "hospital": "Tata Memorial Blood Bank Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "bloodGroup": "AB+",
+      "unitsAvailable": 12,
+      "component": "Platelets & Plasma",
+      "status": "Adequate",
+      "contact": "022-24177000",
+      "lastUpdated": "Today"
+    },
+    {
+      "hospital": "NIMHANS Blood Bank Bengaluru",
+      "state": "Karnataka",
+      "district": "Bengaluru",
+      "bloodGroup": "A+",
+      "unitsAvailable": 15,
+      "component": "Whole Blood",
+      "status": "Adequate",
+      "contact": "080-26995000",
+      "lastUpdated": "Today"
+    },
+    {
+      "hospital": "CMC Vellore Blood Transfusion",
+      "state": "Tamil Nadu",
+      "district": "Vellore",
+      "bloodGroup": "B+",
+      "unitsAvailable": 30,
+      "component": "Whole Blood & Platelets",
+      "status": "Adequate",
+      "contact": "0416-2281000",
+      "lastUpdated": "Today"
+    },
+    {
+      "hospital": "KGMU Blood Bank Lucknow",
+      "state": "Uttar Pradesh",
+      "district": "Lucknow",
+      "bloodGroup": "O+",
+      "unitsAvailable": 22,
+      "component": "Universal RBC",
+      "status": "Adequate",
+      "contact": "0522-2257450",
+      "lastUpdated": "Today"
+    }
+  ],
+  "hospitals": [
+    {
+      "id": "HOSP-AIIMS-DELHI",
+      "name": "All India Institute of Medical Sciences (AIIMS New Delhi)",
+      "shortName": "AIIMS New Delhi",
+      "state": "Delhi",
+      "district": "New Delhi",
+      "city": "New Delhi",
+      "type": "Autonomous Apex Institute (MoHFW)",
+      "hfrId": "IN-DL-001928",
+      "bedsCount": 2478,
+      "rating": "4.9",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "Cardiology & Cardiac Surgery",
+          "doctorsCount": 18,
+          "fee": 0,
+          "room": "Room 101-106, Ground Floor, CNC Block"
+        },
+        {
+          "name": "Neurology & Neurosurgery",
+          "doctorsCount": 14,
+          "fee": 0,
+          "room": "Room 201-208, 2nd Floor, Neuro Sciences"
+        },
+        {
+          "name": "Pediatrics & Neonatology",
+          "doctorsCount": 22,
+          "fee": 0,
+          "room": "Room 110-116, Pediatric OPD Wing"
+        },
+        {
+          "name": "Orthopedics & Joint Replacement",
+          "doctorsCount": 16,
+          "fee": 0,
+          "room": "Room 301-305, Ortho Block"
+        },
+        {
+          "name": "Gastroenterology & Hepatology",
+          "doctorsCount": 12,
+          "fee": 0,
+          "room": "Room 401-404, Main Hospital"
+        },
+        {
+          "name": "Ophthalmology (Dr. RP Centre)",
+          "doctorsCount": 24,
+          "fee": 0,
+          "room": "RP Centre Eye OPD"
+        },
+        {
+          "name": "General Medicine & Diabetology",
+          "doctorsCount": 30,
+          "fee": 0,
+          "room": "Room 1-10, Main OPD Block"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-SJH-DELHI",
+      "name": "Safdarjung Hospital & VMMC",
+      "shortName": "Safdarjung Hospital",
+      "state": "Delhi",
+      "district": "South Delhi",
+      "city": "New Delhi",
+      "type": "Central Government Multi-Specialty",
+      "hfrId": "IN-DL-002410",
+      "bedsCount": 2800,
+      "rating": "4.7",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "General Medicine",
+          "doctorsCount": 28,
+          "fee": 0,
+          "room": "Super Specialty OPD Block"
+        },
+        {
+          "name": "Cardiology & Pulmonary Care",
+          "doctorsCount": 15,
+          "fee": 0,
+          "room": "Heart Center Room 14"
+        },
+        {
+          "name": "Orthopedics & Sports Injury Centre",
+          "doctorsCount": 20,
+          "fee": 0,
+          "room": "SIC Block 1st Floor"
+        },
+        {
+          "name": "Burns & Plastic Surgery",
+          "doctorsCount": 18,
+          "fee": 0,
+          "room": "Burns Emergency Block"
+        },
+        {
+          "name": "Pediatrics & Child Health",
+          "doctorsCount": 25,
+          "fee": 0,
+          "room": "Mother & Child Block"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-RML-DELHI",
+      "name": "Dr. Ram Manohar Lohia Hospital (RML)",
+      "shortName": "Dr. RML Hospital",
+      "state": "Delhi",
+      "district": "Central Delhi",
+      "city": "New Delhi",
+      "type": "Central Government Hospital",
+      "hfrId": "IN-DL-003891",
+      "bedsCount": 1550,
+      "rating": "4.6",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "General Medicine",
+          "doctorsCount": 24,
+          "fee": 0,
+          "room": "Main OPD 2nd Floor"
+        },
+        {
+          "name": "Cardiology",
+          "doctorsCount": 12,
+          "fee": 0,
+          "room": "Room 32, Cardiology Wing"
+        },
+        {
+          "name": "Neurology",
+          "doctorsCount": 10,
+          "fee": 0,
+          "room": "Room 45, Neuro Wing"
+        },
+        {
+          "name": "ENT & Head Neck Surgery",
+          "doctorsCount": 14,
+          "fee": 0,
+          "room": "Room 12, ENT Block"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-KEM-MUMBAI",
+      "name": "King Edward Memorial Hospital & Seth GS Medical College (KEM)",
+      "shortName": "KEM Hospital Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai City",
+      "city": "Mumbai",
+      "type": "Municipal Apex Super-Specialty",
+      "hfrId": "IN-MH-004812",
+      "bedsCount": 2250,
+      "rating": "4.8",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "Cardiology & Angioplasty",
+          "doctorsCount": 16,
+          "fee": 0,
+          "room": "CVTC Building 1st Floor"
+        },
+        {
+          "name": "General Surgery & Trauma",
+          "doctorsCount": 22,
+          "fee": 0,
+          "room": "Main Surgical Wing Room 8"
+        },
+        {
+          "name": "Nephrology & Renal Transplant",
+          "doctorsCount": 10,
+          "fee": 0,
+          "room": "Nephrology Block Room 12"
+        },
+        {
+          "name": "Pediatric Surgery",
+          "doctorsCount": 14,
+          "fee": 0,
+          "room": "Pediatric Care Center"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-TATA-MUMBAI",
+      "name": "Tata Memorial Centre (TMC) Cancer Hospital",
+      "shortName": "Tata Memorial Hospital",
+      "state": "Maharashtra",
+      "district": "Mumbai City",
+      "city": "Mumbai",
+      "type": "Autonomous Apex Cancer Institute (DAE)",
+      "hfrId": "IN-MH-001099",
+      "bedsCount": 1200,
+      "rating": "4.9",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "Medical Oncology & Chemotherapy",
+          "doctorsCount": 30,
+          "fee": 0,
+          "room": "Golden Jubilee Building"
+        },
+        {
+          "name": "Surgical Oncology",
+          "doctorsCount": 26,
+          "fee": 0,
+          "room": "Homi Bhabha Surgical Wing"
+        },
+        {
+          "name": "Radiation Oncology",
+          "doctorsCount": 18,
+          "fee": 0,
+          "room": "Advanced Linac Block"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-RUBY-PUNE",
+      "name": "Ruby Hall Clinic & Research Institute",
+      "shortName": "Ruby Hall Clinic Pune",
+      "state": "Maharashtra",
+      "district": "Pune",
+      "city": "Pune",
+      "type": "Empanelled Super-Specialty",
+      "hfrId": "IN-MH-007721",
+      "bedsCount": 850,
+      "rating": "4.8",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "Cardiology & Stenting",
+          "doctorsCount": 12,
+          "fee": 150,
+          "room": "Cardiac OPD Room 4"
+        },
+        {
+          "name": "Neurology & Brain Care",
+          "doctorsCount": 10,
+          "fee": 150,
+          "room": "Neuro Sciences Wing"
+        },
+        {
+          "name": "Orthopedics & Spine",
+          "doctorsCount": 14,
+          "fee": 150,
+          "room": "Bone & Joint Clinic"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-AIIMS-NAGPUR",
+      "name": "All India Institute of Medical Sciences (AIIMS Nagpur)",
+      "shortName": "AIIMS Nagpur",
+      "state": "Maharashtra",
+      "district": "Nagpur",
+      "city": "Nagpur",
+      "type": "AIIMS Apex Hospital (MoHFW)",
+      "hfrId": "IN-MH-009941",
+      "bedsCount": 960,
+      "rating": "4.8",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "General Medicine & Critical Care",
+          "doctorsCount": 18,
+          "fee": 0,
+          "room": "OPD Block A"
+        },
+        {
+          "name": "Pulmonology & Chest Medicine",
+          "doctorsCount": 12,
+          "fee": 0,
+          "room": "Respiratory Care Room 10"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-NIMHANS-BLR",
+      "name": "National Institute of Mental Health & Neuro Sciences (NIMHANS)",
+      "shortName": "NIMHANS Bengaluru",
+      "state": "Karnataka",
+      "district": "Bengaluru Urban",
+      "city": "Bengaluru",
+      "type": "Institute of National Importance",
+      "hfrId": "IN-KA-004128",
+      "bedsCount": 1000,
+      "rating": "4.9",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "Neurology & Brain Disorders",
+          "doctorsCount": 22,
+          "fee": 0,
+          "room": "Neurosciences OPD"
+        },
+        {
+          "name": "Neurosurgery & Spine",
+          "doctorsCount": 18,
+          "fee": 0,
+          "room": "Surgical Block Room 4"
+        },
+        {
+          "name": "Psychiatry & Behavioral Health",
+          "doctorsCount": 30,
+          "fee": 0,
+          "room": "Main OPD Block"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-NARAYANA-BLR",
+      "name": "Narayana Health City (Mazumdar Shaw Medical Centre)",
+      "shortName": "Narayana Health Bengaluru",
+      "state": "Karnataka",
+      "district": "Bengaluru Urban",
+      "city": "Bengaluru",
+      "type": "Empanelled Multi-Specialty Apex",
+      "hfrId": "IN-KA-008819",
+      "bedsCount": 1600,
+      "rating": "4.8",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "Cardiac Sciences & Heart Transplant",
+          "doctorsCount": 20,
+          "fee": 150,
+          "room": "Heart OPD Complex"
+        },
+        {
+          "name": "Oncology & Bone Marrow Transplant",
+          "doctorsCount": 18,
+          "fee": 150,
+          "room": "Cancer Center Wing 2"
+        },
+        {
+          "name": "Pediatric Cardiology",
+          "doctorsCount": 12,
+          "fee": 150,
+          "room": "Children Heart Wing"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-CMC-VELLORE",
+      "name": "Christian Medical College & Hospital (CMC Vellore)",
+      "shortName": "CMC Vellore",
+      "state": "Tamil Nadu",
+      "district": "Vellore",
+      "city": "Vellore",
+      "type": "Apex Tertiary Medical Center",
+      "hfrId": "IN-TN-003319",
+      "bedsCount": 2800,
+      "rating": "4.9",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "Hematology & Bone Marrow",
+          "doctorsCount": 20,
+          "fee": 100,
+          "room": "Paul Brand Block"
+        },
+        {
+          "name": "Gastroenterology & Hepatology",
+          "doctorsCount": 18,
+          "fee": 100,
+          "room": "GI OPD Room 14"
+        },
+        {
+          "name": "Endocrinology & Diabetes",
+          "doctorsCount": 16,
+          "fee": 100,
+          "room": "Endocrine Center Room 8"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-RGGGH-CHENNAI",
+      "name": "Rajiv Gandhi Government General Hospital (Madras Medical College)",
+      "shortName": "RGGGH Chennai",
+      "state": "Tamil Nadu",
+      "district": "Chennai",
+      "city": "Chennai",
+      "type": "State Apex Government Hospital",
+      "hfrId": "IN-TN-001004",
+      "bedsCount": 3000,
+      "rating": "4.7",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "General Medicine & Cardiology",
+          "doctorsCount": 32,
+          "fee": 0,
+          "room": "Tower Block 2"
+        },
+        {
+          "name": "Vascular Surgery",
+          "doctorsCount": 14,
+          "fee": 0,
+          "room": "Vascular OPD Room 10"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-KGMU-LUCKNOW",
+      "name": "King George’s Medical University (KGMU)",
+      "shortName": "KGMU Lucknow",
+      "state": "Uttar Pradesh",
+      "district": "Lucknow",
+      "city": "Lucknow",
+      "type": "State Medical University & Apex Center",
+      "hfrId": "IN-UP-005510",
+      "bedsCount": 4500,
+      "rating": "4.8",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "Trauma & Emergency Medicine",
+          "doctorsCount": 35,
+          "fee": 0,
+          "room": "Centenary Trauma Centre"
+        },
+        {
+          "name": "Cardiology & Lari Centre",
+          "doctorsCount": 18,
+          "fee": 0,
+          "room": "Lari Cardiology Wing"
+        },
+        {
+          "name": "Pediatrics (Kalam Centre)",
+          "doctorsCount": 22,
+          "fee": 0,
+          "room": "Kalam Pediatric Complex"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-SGPGI-LUCKNOW",
+      "name": "Sanjay Gandhi Postgraduate Institute of Medical Sciences (SGPGIMS)",
+      "shortName": "SGPGI Lucknow",
+      "state": "Uttar Pradesh",
+      "district": "Lucknow",
+      "city": "Lucknow",
+      "type": "Autonomous Apex Tertiary Center",
+      "hfrId": "IN-UP-002291",
+      "bedsCount": 1800,
+      "rating": "4.9",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "Gastroenterology & Liver Transplant",
+          "doctorsCount": 16,
+          "fee": 0,
+          "room": "Main OPD Block"
+        },
+        {
+          "name": "Nephrology & Urology",
+          "doctorsCount": 18,
+          "fee": 0,
+          "room": "Renal Sciences Wing"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-AIIMS-GORAKHPUR",
+      "name": "All India Institute of Medical Sciences (AIIMS Gorakhpur)",
+      "shortName": "AIIMS Gorakhpur",
+      "state": "Uttar Pradesh",
+      "district": "Gorakhpur",
+      "city": "Gorakhpur",
+      "type": "AIIMS Apex Center (MoHFW)",
+      "hfrId": "IN-UP-008912",
+      "bedsCount": 750,
+      "rating": "4.7",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "General Medicine & Diabetology",
+          "doctorsCount": 14,
+          "fee": 0,
+          "room": "OPD Wing A"
+        },
+        {
+          "name": "Orthopedics & Trauma Care",
+          "doctorsCount": 10,
+          "fee": 0,
+          "room": "Ortho OPD Room 4"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-SSKM-KOLKATA",
+      "name": "IPGMER and SSKM Hospital",
+      "shortName": "SSKM Hospital Kolkata",
+      "state": "West Bengal",
+      "district": "Kolkata",
+      "city": "Kolkata",
+      "type": "State Apex Multi-Specialty",
+      "hfrId": "IN-WB-001402",
+      "bedsCount": 2200,
+      "rating": "4.7",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "Cardiology & Cardiothoracic",
+          "doctorsCount": 18,
+          "fee": 0,
+          "room": "Ronald Ross Building"
+        },
+        {
+          "name": "Neurosurgery (Bangur Institute)",
+          "doctorsCount": 16,
+          "fee": 0,
+          "room": "BIN Neuro Complex"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-AIIMS-KALYANI",
+      "name": "All India Institute of Medical Sciences (AIIMS Kalyani)",
+      "shortName": "AIIMS Kalyani",
+      "state": "West Bengal",
+      "district": "Nadia",
+      "city": "Kalyani",
+      "type": "AIIMS Apex Center (MoHFW)",
+      "hfrId": "IN-WB-009182",
+      "bedsCount": 960,
+      "rating": "4.8",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "General Medicine & Nephrology",
+          "doctorsCount": 16,
+          "fee": 0,
+          "room": "OPD Complex Block B"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-CIVIL-AHMEDABAD",
+      "name": "Civil Hospital Ahmedabad & BJ Medical College",
+      "shortName": "Civil Hospital Ahmedabad",
+      "state": "Gujarat",
+      "district": "Ahmedabad",
+      "city": "Ahmedabad",
+      "type": "State Apex Hospital (Largest in Asia)",
+      "hfrId": "IN-GJ-001099",
+      "bedsCount": 3200,
+      "rating": "4.8",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "U.N. Mehta Heart & Cardiology",
+          "doctorsCount": 28,
+          "fee": 0,
+          "room": "UN Mehta Cardiac Tower"
+        },
+        {
+          "name": "GCRI Cancer Institute",
+          "doctorsCount": 22,
+          "fee": 0,
+          "room": "Cancer OPD Room 12"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-SMS-JAIPUR",
+      "name": "Sawai Man Singh (SMS) Hospital & Medical College",
+      "shortName": "SMS Hospital Jaipur",
+      "state": "Rajasthan",
+      "district": "Jaipur",
+      "city": "Jaipur",
+      "type": "State Apex Medical Center",
+      "hfrId": "IN-RJ-001128",
+      "bedsCount": 2500,
+      "rating": "4.8",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "Cardiology & Angiography",
+          "doctorsCount": 20,
+          "fee": 0,
+          "room": "Dhanwantri OPD Block"
+        },
+        {
+          "name": "Neurology & Brain Stroke Unit",
+          "doctorsCount": 14,
+          "fee": 0,
+          "room": "Neuro OPD Room 15"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-AIIMS-JODHPUR",
+      "name": "All India Institute of Medical Sciences (AIIMS Jodhpur)",
+      "shortName": "AIIMS Jodhpur",
+      "state": "Rajasthan",
+      "district": "Jodhpur",
+      "city": "Jodhpur",
+      "type": "AIIMS Apex Center (MoHFW)",
+      "hfrId": "IN-RJ-009941",
+      "bedsCount": 1100,
+      "rating": "4.9",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "Cardiovascular Surgery",
+          "doctorsCount": 16,
+          "fee": 0,
+          "room": "Super Specialty OPD Wing"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-PGIMER-CHD",
+      "name": "Postgraduate Institute of Medical Education & Research (PGIMER)",
+      "shortName": "PGIMER Chandigarh",
+      "state": "Chandigarh",
+      "district": "Chandigarh",
+      "city": "Chandigarh",
+      "type": "Autonomous Apex Institute (MoHFW)",
+      "hfrId": "IN-CH-001092",
+      "bedsCount": 2200,
+      "rating": "4.9",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "Internal Medicine & Critical Care",
+          "doctorsCount": 25,
+          "fee": 0,
+          "room": "Nehru Hospital OPD"
+        },
+        {
+          "name": "Cardiovascular Thoracic Surgery",
+          "doctorsCount": 16,
+          "fee": 0,
+          "room": "Advanced Cardiac Centre"
+        },
+        {
+          "name": "Pediatric Medicine",
+          "doctorsCount": 20,
+          "fee": 0,
+          "room": "Advanced Pediatrics Centre"
+        },
+        {
+          "name": "Eye & Ophthalmology",
+          "doctorsCount": 18,
+          "fee": 0,
+          "room": "Advanced Eye Centre"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-AIIMS-PATNA",
+      "name": "All India Institute of Medical Sciences (AIIMS Patna)",
+      "shortName": "AIIMS Patna",
+      "state": "Bihar",
+      "district": "Patna",
+      "city": "Patna",
+      "type": "AIIMS Apex Center (MoHFW)",
+      "hfrId": "IN-BR-001192",
+      "bedsCount": 1250,
+      "rating": "4.8",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "General Medicine & Diabetology",
+          "doctorsCount": 20,
+          "fee": 0,
+          "room": "Main OPD Block C"
+        },
+        {
+          "name": "Pulmonology & Chest Medicine",
+          "doctorsCount": 12,
+          "fee": 0,
+          "room": "Respiratory Care Room 8"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-AIIMS-BHOPAL",
+      "name": "All India Institute of Medical Sciences (AIIMS Bhopal)",
+      "shortName": "AIIMS Bhopal",
+      "state": "Madhya Pradesh",
+      "district": "Bhopal",
+      "city": "Bhopal",
+      "type": "AIIMS Apex Center (MoHFW)",
+      "hfrId": "IN-MP-001928",
+      "bedsCount": 1100,
+      "rating": "4.8",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "Cardiology & Cardiac Surgery",
+          "doctorsCount": 16,
+          "fee": 0,
+          "room": "Surgical OPD Block"
+        },
+        {
+          "name": "Neurology & Stroke Care",
+          "doctorsCount": 14,
+          "fee": 0,
+          "room": "Neuro Block Room 6"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-NIMS-HYDERABAD",
+      "name": "Nizam’s Institute of Medical Sciences (NIMS)",
+      "shortName": "NIMS Hyderabad",
+      "state": "Telangana",
+      "district": "Hyderabad",
+      "city": "Hyderabad",
+      "type": "State Autonomous Apex Institute",
+      "hfrId": "IN-TS-001182",
+      "bedsCount": 1800,
+      "rating": "4.8",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "Cardiology & Heart Stenting",
+          "doctorsCount": 18,
+          "fee": 0,
+          "room": "Millennium Block"
+        },
+        {
+          "name": "Nephrology & Dialysis",
+          "doctorsCount": 14,
+          "fee": 0,
+          "room": "Renal OPD Room 10"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-AIIMS-MANGALAGIRI",
+      "name": "All India Institute of Medical Sciences (AIIMS Mangalagiri)",
+      "shortName": "AIIMS Mangalagiri",
+      "state": "Andhra Pradesh",
+      "district": "Guntur",
+      "city": "Vijayawada / Guntur",
+      "type": "AIIMS Apex Center (MoHFW)",
+      "hfrId": "IN-AP-008912",
+      "bedsCount": 960,
+      "rating": "4.8",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "General Medicine & Endocrinology",
+          "doctorsCount": 15,
+          "fee": 0,
+          "room": "OPD Block Room 12"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-AMRITA-KOCHI",
+      "name": "Amrita Institute of Medical Sciences & Research Centre",
+      "shortName": "Amrita Hospital Kochi",
+      "state": "Kerala",
+      "district": "Ernakulam",
+      "city": "Kochi",
+      "type": "Empanelled Apex Tertiary Hospital",
+      "hfrId": "IN-KL-004419",
+      "bedsCount": 1400,
+      "rating": "4.9",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "Gastroenterology & Liver Surgery",
+          "doctorsCount": 16,
+          "fee": 150,
+          "room": "Amrita GI Center"
+        },
+        {
+          "name": "Pediatric Cardiac Surgery",
+          "doctorsCount": 12,
+          "fee": 150,
+          "room": "Children Heart Center"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-AIIMS-BHUBANESWAR",
+      "name": "All India Institute of Medical Sciences (AIIMS Bhubaneswar)",
+      "shortName": "AIIMS Bhubaneswar",
+      "state": "Odisha",
+      "district": "Khordha",
+      "city": "Bhubaneswar",
+      "type": "AIIMS Apex Center (MoHFW)",
+      "hfrId": "IN-OR-001099",
+      "bedsCount": 1150,
+      "rating": "4.8",
+      "image": "/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg",
+      "departments": [
+        {
+          "name": "Cardiology & Heart Care",
+          "doctorsCount": 16,
+          "fee": 0,
+          "room": "Super Specialty Block"
+        }
+      ]
+    },
+    {
+      "id": "HOSP-AIIMS-RISHIKESH",
+      "name": "All India Institute of Medical Sciences (AIIMS Rishikesh)",
+      "shortName": "AIIMS Rishikesh",
+      "state": "Uttarakhand",
+      "district": "Dehradun",
+      "city": "Rishikesh",
+      "type": "AIIMS Apex Center (MoHFW)",
+      "hfrId": "IN-UK-001192",
+      "bedsCount": 1000,
+      "rating": "4.8",
+      "image": "/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg",
+      "departments": [
+        {
+          "name": "Emergency Trauma & Orthopedics",
+          "doctorsCount": 18,
+          "fee": 0,
+          "room": "Himalayan Trauma Center"
+        }
+      ]
+    }
+  ]
+}
