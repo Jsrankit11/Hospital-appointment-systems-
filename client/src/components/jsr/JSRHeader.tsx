@@ -142,10 +142,10 @@ export const JSRHeader: React.FC<JSRHeaderProps> = ({
           {/* Prominent Hospital Admin Desk Button */}
           <button
             onClick={onToggleConsole}
-            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl text-xs font-black transition border shadow-md shrink-0 ${
+            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-black transition border-2 shadow-xl shrink-0 hover:scale-105 ring-4 ring-offset-1 ${
               isConsoleView
-                ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-amber-500/20'
-                : 'bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-700 text-white border-teal-400/40 shadow-teal-700/30 hover:scale-105'
+                ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-amber-500/30 ring-amber-500/30 ring-offset-white dark:ring-offset-slate-900'
+                : 'bg-gradient-to-r from-rose-600 to-red-600 text-white border-red-400/40 shadow-red-700/40 ring-red-500/30 ring-offset-white dark:ring-offset-slate-900 animate-pulse'
             }`}
           >
             <Building2 className="w-4 h-4" />
@@ -180,10 +180,14 @@ export const JSRHeader: React.FC<JSRHeaderProps> = ({
 
         <button
           onClick={onToggleConsole}
-          className="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 rounded-xl bg-teal-600 text-white text-[11px] font-bold shadow-sm"
+          className={`flex-1 flex items-center justify-center gap-1 py-2 px-2 rounded-xl text-[12px] font-black shadow-lg border-2 ring-2 ring-offset-1 ${
+            isConsoleView
+              ? 'bg-amber-500 text-slate-950 border-amber-400 ring-amber-500/30'
+              : 'bg-gradient-to-r from-rose-600 to-red-600 text-white border-red-500/50 ring-red-500/40 animate-pulse'
+          }`}
         >
-          <Building2 className="w-3 h-3" />
-          <span>{isConsoleView ? 'Portal' : 'Admin'}</span>
+          <Building2 className="w-4 h-4" />
+          <span>{isConsoleView ? 'Citizen Portal' : 'Admin Desk'}</span>
         </button>
       </div>
 
