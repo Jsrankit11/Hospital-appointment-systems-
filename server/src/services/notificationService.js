@@ -1,7 +1,6 @@
 const { memoryStore, saveLocalStore } = require('../config/db');
 
 class NotificationService {
-  // Target Admin / Owner Email
   constructor() {
     this.adminEmail = 'ankitchaudhary8081039@gmail.com';
   }
@@ -94,6 +93,19 @@ class NotificationService {
       subject: `🏥 JSR Healthcare OPD Appointment Confirmed - Token #${appointment.tokenNumber}`,
       message: text,
       meta: { appointmentId: appointment.id, tokenNumber: appointment.tokenNumber }
+    });
+  }
+
+  // Specific Dispatcher: Lab Report Ready Alert
+  sendLabReportReadyAlert(patient, labTest) {
+    const text = `Dear ${patient.name}, Your lab diagnostic test for "${labTest.testName}" is now ready and verified by Pathologist. View or download the signed report from JSR Portal.`;
+    return this.dispatch({
+      recipient: patient.mobile || '9899001122',
+      recipientName: patient.name,
+      channels: ['SMS', 'EMAIL'],
+      subject: `🔬 Lab Test Report Ready: ${labTest.testName}`,
+      message: text,
+      meta: { labTestId: labTest.id, patientId: patient.id }
     });
   }
 }
