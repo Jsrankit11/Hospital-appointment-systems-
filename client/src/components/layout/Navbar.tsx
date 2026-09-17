@@ -4,7 +4,7 @@ import { useNotification } from '../../context/NotificationContext';
 import { UserRole } from '../../types';
 import {
   ShieldCheck, AlertOctagon, UserCircle, LogOut, ChevronDown,
-  Menu, X, Check, Activity, Bell, Sparkles, Building2
+  Menu, X, Check, Activity, Bell, Building2
 } from 'lucide-react';
 
 interface NavbarProps {

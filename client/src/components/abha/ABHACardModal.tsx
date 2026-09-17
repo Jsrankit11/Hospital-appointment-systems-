@@ -1,6 +1,6 @@
 import React from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { ShieldCheck, Download, Printer, X, Sparkles, UserCheck } from 'lucide-react';
+import { ShieldCheck, Download, Printer, X, UserCheck } from 'lucide-react';
 import { Patient } from '../../types';
 
 interface ABHACardModalProps {

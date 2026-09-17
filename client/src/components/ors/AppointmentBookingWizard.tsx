@@ -6,7 +6,7 @@ import { useNotification } from '../../context/NotificationContext';
 import {
   Calendar, Clock, ShieldCheck, Building2, Stethoscope,
   UserCheck, CheckCircle2, ArrowRight, ArrowLeft, Printer,
-  Download, X, KeyRound, Smartphone, AlertCircle, Loader2, Sparkles, MapPin
+  Download, X, KeyRound, Smartphone, AlertCircle, Loader2, MapPin
 } from 'lucide-react';
 
 interface AppointmentBookingWizardProps {

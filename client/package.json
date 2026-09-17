@@ -1,5 +1,5 @@
 {
-  "name": "hams-client",
+  "name": "patient-case-taking-software-client",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.116.0",
     "axios": "^1.7.2",
     "canvas-confetti": "^1.9.3",
     "clsx": "^2.1.1",

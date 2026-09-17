@@ -2,7 +2,7 @@ import React from 'react';
 import {
   LayoutDashboard, CreditCard, Users, Stethoscope,
   FlaskConical, Pill, BedDouble, Receipt, ShieldCheck,
-  FileSpreadsheet, Sparkles, X, HeartPulse, ChevronRight, KeyRound, UserCheck
+  FileSpreadsheet, X, HeartPulse, ChevronRight, KeyRound, UserCheck
 } from 'lucide-react';
 
 interface SidebarProps {

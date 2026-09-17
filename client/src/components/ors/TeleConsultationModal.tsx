@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Video, Mic, MicOff, VideoOff, PhoneOff, MessageSquare, ShieldCheck, X, Sparkles } from 'lucide-react';
+import { Video, Mic, MicOff, VideoOff, PhoneOff, MessageSquare, ShieldCheck, X } from 'lucide-react';
 
 interface TeleConsultationModalProps {
   onClose: () => void;

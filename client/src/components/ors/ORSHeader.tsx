@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import {
   ShieldCheck, Phone, Globe, Moon, Sun, AlertCircle,
-  Sparkles, Building2, UserCircle, LogIn, LogOut, KeyRound
+  Building2, UserCircle, LogIn, LogOut, KeyRound
 } from 'lucide-react';
 
 interface ORSHeaderProps {

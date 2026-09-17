@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import API from '../services/api';
 import { useNotification } from '../context/NotificationContext';
-import { ShieldCheck, Building2, Stethoscope, FileText, CheckCircle2, Search, Plus, Sparkles } from 'lucide-react';
+import { ShieldCheck, Building2, Stethoscope, FileText, CheckCircle2, Search, Plus, Database, Download, Code } from 'lucide-react';
 import { ABDMConsent } from '../types';
 import { ABHACreatorModal } from '../components/abha/ABHACreatorModal';
 import { ABDMConsentModal } from '../components/consent/ABDMConsentModal';
+import { AuditLogsViewer } from '../components/admin/AuditLogsViewer';
+import { checkSupabaseHealth } from '../services/supabaseClient';
 
 export const ABDMPage: React.FC = () => {
   const { addToast } = useNotification();
@@ -15,6 +17,9 @@ export const ABDMPage: React.FC = () => {
   const [hprSearch, setHprSearch] = useState('');
   const [showCreatorModal, setShowCreatorModal] = useState(false);
   const [showConsentModal, setShowConsentModal] = useState(false);
+  const [supabaseStatus, setSupabaseStatus] = useState<string>('Checking...');
+  const [isSupabaseConnected, setIsSupabaseConnected] = useState<boolean>(false);
+  const [fhirBundle, setFhirBundle] = useState<any | null>(null);
 
   const fetchABDMData = async () => {
     try {
@@ -27,8 +32,24 @@ export const ABDMPage: React.FC = () => {
       if (hfrRes.data.success) setFacilities(hfrRes.data.data);
       if (hprRes.data.success) setDoctors(hprRes.data.data);
       if (consentRes.data.success) setConsents(consentRes.data.data);
+
+      const health = await checkSupabaseHealth();
+      setSupabaseStatus(health.message);
+      setIsSupabaseConnected(health.connected);
     } catch (err) {
       console.error('Fetch ABDM error:', err);
+    }
+  };
+
+  const handleExportFHIR = async () => {
+    try {
+      const res = await API.post('/fhir/export', { patientId: 'PAT-1001' });
+      if (res.data.success) {
+        setFhirBundle(res.data.data);
+        addToast('success', 'FHIR R4 Bundle Generated', 'Standard HL7 FHIR document bundle created for ABDM Personal Health Record exchange.');
+      }
+    } catch (err: any) {
+      addToast('error', 'FHIR Export Failed', err.message);
     }
   };
 
@@ -38,6 +59,26 @@ export const ABDMPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      
+      {/* Supabase & Cloud DB Sync Badge Bar */}
+      <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 text-white flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+        <div className="flex items-center gap-2.5">
+          <Database className="w-4 h-4 text-emerald-400" />
+          <div>
+            <span className="font-bold text-slate-200">Supabase Database Engine: </span>
+            <span className="text-slate-400">{supabaseStatus}</span>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleExportFHIR}
+            className="px-3 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs flex items-center gap-1.5 transition"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Export ABDM FHIR R4 Bundle</span>
+          </button>
+        </div>
+      </div>
       
       {/* ABDM Official Emblem Banner */}
       <div className="p-6 rounded-3xl bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-900 border border-emerald-500/40 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
@@ -173,6 +214,44 @@ export const ABDMPage: React.FC = () => {
         </div>
 
       </div>
+
+      {/* Audit Logs Viewer Section */}
+      <AuditLogsViewer />
+
+      {/* FHIR Bundle Modal */}
+      {fhirBundle && (
+        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="w-full max-w-3xl bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl p-6 space-y-4 max-h-[85vh] flex flex-col">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+              <div className="flex items-center gap-2">
+                <Code className="w-5 h-5 text-teal-500" />
+                <h3 className="font-bold text-base text-slate-900 dark:text-white">
+                  ABDM FHIR R4 Standard Document Bundle
+                </h3>
+              </div>
+              <button
+                onClick={() => setFhirBundle(null)}
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-600"
+              >
+                ✕
+              </button>
+            </div>
+
+            <pre className="flex-1 overflow-y-auto p-4 rounded-2xl bg-slate-950 text-emerald-400 font-mono text-[11px] leading-relaxed">
+              {JSON.stringify(fhirBundle, null, 2)}
+            </pre>
+
+            <div className="flex justify-end pt-2">
+              <button
+                onClick={() => setFhirBundle(null)}
+                className="px-5 py-2 rounded-xl bg-teal-600 text-white font-bold text-xs shadow-md"
+              >
+                Close Preview
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {showCreatorModal && (
         <ABHACreatorModal

@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
 import {
   UserCircle, Lock, Mail, Phone, ShieldCheck, CheckCircle2,
-  X, Loader2, KeyRound, Sparkles, Building2, UserPlus, LogIn, HelpCircle
+  X, Loader2, KeyRound, Building2, UserPlus, LogIn, HelpCircle
 } from 'lucide-react';
 import { UserRole } from '../../types';
 

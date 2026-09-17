@@ -56,8 +56,8 @@ export const JSRFooter: React.FC<JSRFooterProps> = ({ language }) => {
           </h4>
           <div className="space-y-2 text-[11px]">
             <p className="text-white font-bold">24/7 Helpline: 1800-11-4477</p>
-            <p className="text-emerald-400 font-bold">Email: ankitchaudhary8081039@gmail.com</p>
-            <p className="text-slate-400">Created by: <strong>Ankit Chaudhary</strong></p>
+            <p className="text-emerald-400 font-bold">Email: support@jsrhealthcare.gov.in</p>
+            <p className="text-slate-400">Created by: <strong>JSR Team</strong></p>
           </div>
         </div>
 
@@ -66,7 +66,7 @@ export const JSRFooter: React.FC<JSRFooterProps> = ({ language }) => {
       {/* Bottom Copyright & Disclaimer */}
       <div className="border-t border-slate-800/80 py-4 bg-slate-950 text-slate-500 text-[10px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-          <p>© 2026 JSR Healthcare Portal. Designed & Developed by <strong>Ankit Chaudhary</strong>. All Rights Reserved.</p>
+          <p>© 2026 JSR Healthcare Portal. Designed & Developed by <strong>JSR Team</strong>. All Rights Reserved.</p>
           <div className="flex items-center gap-4 text-slate-400">
             <span>Terms of Service</span>
             <span>Privacy Policy</span>

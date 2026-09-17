@@ -68,6 +68,8 @@ router.get('/pharmacy', pharmacyController.getPharmacyInventory);
 router.post('/pharmacy/dispense', pharmacyController.dispenseMedicine);
 router.post('/pharmacy/restock', pharmacyController.restockMedicine);
 
+const aiCaseTakingController = require('../controllers/aiCaseTakingController');
+
 // --- 9. Bed Management & ICU Grid ---
 router.get('/beds', bedController.getBeds);
 router.post('/beds/allocate', bedController.allocateBed);
@@ -88,5 +90,54 @@ router.get('/export/pharmacy', exportController.exportPharmacy);
 
 // --- 12. Hospital Analytics & KPIs ---
 router.get('/analytics', analyticsController.getAnalytics);
+
+// --- 13. AI Conversational Case Taking & Emergency Triage Engine ---
+router.post('/ai/conversation/start', aiCaseTakingController.startConversation);
+router.post('/ai/conversation/respond', aiCaseTakingController.respondToQuestion);
+router.post('/ai/triage/check-redflags', aiCaseTakingController.checkRedFlags);
+router.post('/ai/copilot/chat', aiCaseTakingController.copilotChat);
+router.post('/ai/validate-vitals', aiCaseTakingController.validateVitals);
+
+
+// --- 14. AYUSH / Ayurveda Case Taking & Dashavidha Pariksha ---
+router.post('/ai/ayush/assess', aiCaseTakingController.assessAyush);
+
+// --- 15. Medical Document Scanner & AI OCR (Prescriptions, Lab, Interactions) ---
+router.post('/ai/ocr/scan-document', aiCaseTakingController.scanDocumentOCR);
+
+// --- 16. AI Clinical Summary (1-Page Doctor Draft & EHR Integration) ---
+router.post('/ai/clinical-summary/generate', aiCaseTakingController.generateClinicalSummary);
+router.post('/ai/clinical-summary/update', aiCaseTakingController.updateClinicalSummary);
+
+// --- 17. Granular & Revocable Patient Consent (ABDM FHIR linkage) ---
+router.post('/consent/manage', aiCaseTakingController.manageGranularConsent);
+
+// --- 18. Patient Portal Consolidated Profile & History ---
+router.get('/patient/portal-dashboard', aiCaseTakingController.getPatientDashboardData);
+
+const triageController = require('../controllers/triageController');
+const fhirController = require('../controllers/fhirController');
+const { testSupabaseConnection } = require('../config/supabase');
+
+// --- 19. Emergency & Priority Triage Console ---
+router.get('/triage/alerts', triageController.getTriageAlerts);
+router.post('/triage/alerts', triageController.createTriageAlert);
+router.put('/triage/alerts/:id', triageController.updateTriageAlert);
+
+// --- 20. ABDM FHIR R4 Bundle Export & Audit Logs ---
+router.post('/fhir/export', fhirController.exportFHIRBundle);
+router.get('/admin/audit-logs', fhirController.getAuditLogs);
+
+// --- 21. Supabase / PostgreSQL Database Connection Status ---
+router.get('/database/status', async (req, res) => {
+  const status = await testSupabaseConnection();
+  res.json({
+    success: true,
+    data: {
+      supabase: status,
+      timestamp: new Date().toISOString()
+    }
+  });
+});
 
 module.exports = router;

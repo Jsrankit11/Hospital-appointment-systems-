@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   CalendarCheck, FlaskConical, Droplet, CreditCard,
-  ShieldCheck, Video, ArrowRight, Activity, Clock, CheckCircle2, Sparkles
+  ShieldCheck, Video, ArrowRight, Activity, Clock, CheckCircle2
 } from 'lucide-react';
 
 interface ORSHeroServicesProps {
@@ -98,8 +98,7 @@ export const ORSHeroServices: React.FC<ORSHeroServicesProps> = ({
       {/* Hero Welcome Banner */}
       <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-teal-950 to-slate-900 border-2 border-emerald-500/30 text-white p-6 sm:p-10 shadow-2xl">
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">
-            <Sparkles className="w-4 h-4" />
+          <div className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">
             <span>{language === 'en' ? 'OFFICIAL NATIONAL CITIZEN HEALTH PORTAL' : 'आधिकारिक राष्ट्रीय नागरिक स्वास्थ्य पोर्टल'}</span>
           </div>
 

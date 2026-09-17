@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   CalendarCheck, FlaskConical, Droplet, CreditCard,
-  ShieldCheck, Video, ArrowRight, Activity, Clock, CheckCircle2, Sparkles
+  ShieldCheck, Video, ArrowRight, Activity, Clock, CheckCircle2,
+  Mic, Flower2, FileText, Lock, User, Users, Sparkles
 } from 'lucide-react';
 
 interface JSRHeroServicesProps {
@@ -12,6 +13,13 @@ interface JSRHeroServicesProps {
   onOpenPaymentPortal: () => void;
   onOpenABHA: () => void;
   onOpenTeleconsult: () => void;
+  onOpenAICaseTaking?: () => void;
+  onOpenAyushIntake?: () => void;
+  onOpenOCRScanner?: () => void;
+  onOpenPatientPortal?: () => void;
+  onOpenMediKiosk?: () => void;
+  onOpenTriage?: () => void;
+  onOpenGeminiCopilot?: () => void;
 }
 
 export const JSRHeroServices: React.FC<JSRHeroServicesProps> = ({
@@ -21,9 +29,67 @@ export const JSRHeroServices: React.FC<JSRHeroServicesProps> = ({
   onOpenBloodAvailability,
   onOpenPaymentPortal,
   onOpenABHA,
-  onOpenTeleconsult
+  onOpenTeleconsult,
+  onOpenAICaseTaking,
+  onOpenAyushIntake,
+  onOpenOCRScanner,
+  onOpenPatientPortal,
+  onOpenMediKiosk,
+  onOpenTriage,
+  onOpenGeminiCopilot
 }) => {
   const services = [
+    {
+      id: 'gemini-copilot',
+      title: language === 'en' ? 'Gemini & ChatGPT AI Doctor' : 'जेमिनी व चैटजीपीटी एआई डॉक्टर',
+      sub: language === 'en' ? 'Multilingual Voice AI & Instant Answers' : 'इंसानी आवाज में त्वरित चिकित्सीय परामर्श',
+      desc: language === 'en' ? 'Instant natural Hindi/English voice consultation. Ask about symptoms, prescription safety, lab results, and differential diagnosis in real-time.' : 'इंसानी आवाज (हिन्दी व अन्य भाषाओं) में तत्काल मेडिकल उत्तर। लक्षण, दवाओं की सुरक्षा, और टेस्ट रिपोर्ट का त्वरित समाधान।',
+      icon: Sparkles,
+      color: 'from-indigo-600 via-purple-600 to-teal-600',
+      badge: language === 'en' ? '✨ VOICE AI 2.0' : '✨ वॉयस एआई 2.0',
+      action: onOpenGeminiCopilot || onOpenAICaseTaking
+    },
+    {
+      id: 'medikiosk-flagship',
+      title: language === 'en' ? 'MediKiosk – AI Patient Intake' : 'मेडीकियोस्क – एआई मरीज केस टेकिंग',
+      sub: language === 'en' ? 'Multilingual Voice, Touch & 1-Page Summary' : 'बहुभाषी आवाज, स्पर्श व 1-पेज क्लिनिकल सारांश',
+      desc: language === 'en' ? 'Complete clinical history taking before consultation. Adaptive SOCRATES questioning, emergency red flags, and physician-ready draft.' : 'परामर्श से पहले बहुभाषी वॉइस व टच द्वारा संपूर्ण केस टेकिंग। स्वचालित रेड-फ्लैग पहचान और डॉक्टर के लिए 1-पेज क्लिनिकल सारांश।',
+      icon: Mic,
+      color: 'from-teal-600 via-emerald-600 to-teal-800',
+      badge: language === 'en' ? '🌟 SIH 2026 FLAGSHIP' : '🌟 मुख्य एआई सेवा',
+      action: onOpenMediKiosk || onOpenAICaseTaking || onBookAppointment
+    },
+
+    {
+      id: 'ayush',
+      title: language === 'en' ? 'AYUSH / Ayurveda Case Taking' : 'आयुष / आयुर्वेद केस टेकिंग फ्रेमवर्क',
+      sub: language === 'en' ? 'Dashavidha Pariksha & Prakriti' : 'दशविध परीक्षा एवं वात-पित्त-कफ प्रकृति',
+      desc: language === 'en' ? 'Comprehensive Ayurvedic assessment: Prakriti dosha distribution, Agni, Koshta, Sara, Samhanana, and tailored Ahara-Vihara diet protocols.' : 'दशविध परीक्षा, जठराग्नि, कोष्ठ, एवं प्रकृति निर्धारण के साथ संपूर्ण आयुर्वेदिक निदान एवं आहार-विहार प्रोटोकॉल।',
+      icon: Flower2,
+      color: 'from-emerald-700 to-green-800',
+      badge: language === 'en' ? '🏥 AYUSH SPECIAL' : '🏥 आयुष विशिष्ट',
+      action: onOpenAyushIntake || onBookAppointment
+    },
+    {
+      id: 'ocr',
+      title: language === 'en' ? 'Document Scanner + AI OCR' : 'मेडिकल पर्चा व रिपोर्ट स्कैनर (OCR)',
+      sub: language === 'en' ? 'Prescription OCR & Drug Interactions' : 'हस्तलिखित पर्चे व दवाओं की जांच',
+      desc: language === 'en' ? 'Scan handwritten prescriptions and lab reports. Extracts medicines, highlights abnormal lab values, and flags fatal drug-drug interactions.' : 'पर्चे और लैब रिपोर्ट स्कैन करें। दवाइयों का विवरण, असामान्य जांच परिणाम और संभावित ड्रग इंटरैक्शन अलर्ट प्राप्त करें।',
+      icon: FileText,
+      color: 'from-blue-600 to-indigo-700',
+      badge: language === 'en' ? '📄 SMART OCR' : '📄 स्मार्ट ओसीआर',
+      action: onOpenOCRScanner || onOpenLabReports
+    },
+    {
+      id: 'patient-portal',
+      title: language === 'en' ? 'Patient Portal & Consents' : 'मरीज स्वास्थ्य खाता व सहमति केंद्र',
+      sub: language === 'en' ? 'ABHA Linked Medical History' : 'आभा लिंक्ड मेडिकल रिकॉर्ड व सहमति',
+      desc: language === 'en' ? 'Manage your 14-digit ABHA card, longitudinal medical records, and 1-click revocable consent authorizations with ABDM hospitals.' : 'अपना 14-अंकीय डिजिटल हेल्थ कार्ड, पिछला मेडिकल इतिहास और अस्पतालों के साथ प्रतिसंहरणीय सहमति प्रबंधित करें।',
+      icon: ShieldCheck,
+      color: 'from-purple-600 to-violet-800',
+      badge: language === 'en' ? '🔐 ABDM FHIR' : '🔐 आभा सहमति',
+      action: onOpenPatientPortal || onOpenABHA
+    },
     {
       id: 'book',
       title: language === 'en' ? 'Book Hospital Appointment' : 'अस्पताल अपॉइंटमेंट बुक करें',
@@ -65,16 +131,6 @@ export const JSRHeroServices: React.FC<JSRHeroServicesProps> = ({
       action: onOpenPaymentPortal
     },
     {
-      id: 'abha',
-      title: language === 'en' ? 'Digital Health ID Card' : 'डिजिटल हेल्थ आईडी कार्ड',
-      sub: language === 'en' ? '14-Digit Health Account' : '14-अंकीय स्वास्थ्य खाता',
-      desc: language === 'en' ? 'Create your official 14-digit Digital Health Card with QR code for paperless OPD hospital admissions.' : 'अस्पतालों में बिना कतार प्रवेश के लिए अपना 14-अंकीय डिजिटल हेल्थ कार्ड बनाएं।',
-      icon: ShieldCheck,
-      color: 'from-amber-600 to-orange-700',
-      badge: language === 'en' ? 'DIGITAL ID' : 'डिजिटल आईडी',
-      action: onOpenABHA
-    },
-    {
       id: 'tele',
       title: language === 'en' ? 'Doctor Tele-Consultation' : 'डॉक्टर वीडियो परामर्श',
       sub: language === 'en' ? 'Video OPD from Home' : 'घर बैठे वीडियो ओपीडी',
@@ -92,9 +148,8 @@ export const JSRHeroServices: React.FC<JSRHeroServicesProps> = ({
       {/* Hero Welcome Banner */}
       <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-teal-950 to-slate-900 border-2 border-emerald-500/30 text-white p-6 sm:p-10 shadow-2xl">
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">
-            <Sparkles className="w-4 h-4" />
-            <span>{language === 'en' ? 'JSR HEALTHCARE • CREATED BY ANKIT CHAUDHARY' : 'जेएसआर हेल्थकेयर • अंकित चौधरी द्वारा निर्मित'}</span>
+          <div className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">
+            <span>{language === 'en' ? 'JSR HEALTHCARE • JSR TEAM' : 'जेएसआर हेल्थकेयर • जेएसआर टीम'}</span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
@@ -117,11 +172,18 @@ export const JSRHeroServices: React.FC<JSRHeroServicesProps> = ({
 
           <div className="flex flex-wrap gap-3 pt-2">
             <button
+              onClick={onOpenMediKiosk || onBookAppointment}
+              className="flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 font-black text-sm shadow-xl shadow-teal-500/30 transition transform hover:-translate-y-0.5 border border-teal-200"
+            >
+              <Mic className="w-4 h-4 text-slate-950" />
+              <span>{language === 'en' ? 'Start MediKiosk Patient Intake' : 'मेडीकियोस्क मरीज केस टेकिंग'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <button
               onClick={onBookAppointment}
               className="flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm shadow-xl shadow-emerald-600/30 transition transform hover:-translate-y-0.5"
             >
               <span>{language === 'en' ? 'Book OPD Appointment Now' : 'ओपीडी अपॉइंटमेंट बुक करें'}</span>
-              <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={onOpenPaymentPortal}

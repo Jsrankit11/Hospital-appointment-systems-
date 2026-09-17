@@ -3,6 +3,7 @@ import API from '../../services/api';
 import { useNotification } from '../../context/NotificationContext';
 import { Stethoscope, Heart, Activity, Thermometer, Weight, Plus, Trash2, Send, FileText, FlaskConical } from 'lucide-react';
 import { Appointment, EHR } from '../../types';
+import { AIClinicalSummaryCard } from './AIClinicalSummaryCard';
 
 interface DoctorConsultationDeskProps {
   currentAppointment: Appointment | null;
@@ -25,6 +26,12 @@ export const DoctorConsultationDesk: React.FC<DoctorConsultationDeskProps> = ({ 
   ]);
   const [recommendedTests, setRecommendedTests] = useState<string[]>(['Complete Blood Count (CBC)', 'Lipid Profile Comprehensive']);
   const [loading, setLoading] = useState(false);
+
+  const handleApplyAIDraft = (draft: any) => {
+    if (draft.symptoms) setSymptoms(draft.symptoms);
+    if (draft.clinicalNotes) setClinicalNotes(draft.clinicalNotes);
+    if (draft.diagnosis) setDiagnosis(draft.diagnosis);
+  };
 
   const addPrescriptionRow = () => {
     setPrescriptions([...prescriptions, { medicine: '', dosage: '1 Tab Daily', duration: '5 Days', instructions: 'After food' }]);
@@ -101,6 +108,12 @@ export const DoctorConsultationDesk: React.FC<DoctorConsultationDeskProps> = ({ 
           </div>
         </div>
       </div>
+
+      {/* 1-Page AI Clinical Summary & Triage Inspection */}
+      <AIClinicalSummaryCard
+        currentAppointment={currentAppointment}
+        onApplyToPrescription={handleApplyAIDraft}
+      />
 
       <form onSubmit={handleSubmit} className="space-y-6">
         

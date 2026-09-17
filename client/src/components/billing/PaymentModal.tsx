@@ -4,7 +4,7 @@ import API from '../../services/api';
 import { useNotification } from '../../context/NotificationContext';
 import {
   CreditCard, QrCode, Banknote, Building, ShieldCheck,
-  CheckCircle2, X, Download, Printer, Loader2, Sparkles, Receipt
+  CheckCircle2, X, Download, Printer, Loader2, Receipt
 } from 'lucide-react';
 import { Bill } from '../../types';
 

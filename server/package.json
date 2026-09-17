@@ -1,7 +1,7 @@
 {
-  "name": "hams-server",
+  "name": "patient-case-taking-software-server",
   "version": "1.0.0",
-  "description": "Hospital & Healthcare Management System (HAMS) Backend API - ABDM, ABHA, RBAC, Payments, Excel Exports",
+  "description": "Patient Case-Taking Software (MediKiosk / HAMS) Backend API - ABDM, ABHA, RBAC, Payments, Excel Exports",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
@@ -9,6 +9,7 @@
     "seed": "node src/seeds/seed.js"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.116.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

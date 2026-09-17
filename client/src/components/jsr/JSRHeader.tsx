@@ -3,9 +3,10 @@ import { useAuth } from '../../context/AuthContext';
 import { ThemeToggle } from '../common/ThemeToggle';
 import {
   ShieldCheck, Phone, Globe, Moon, Sun, AlertCircle,
-  Sparkles, Building2, UserCircle, LogIn, LogOut, KeyRound, HeartPulse,
-  Calendar, CheckCircle2, UserCheck
+  Mic, Building2, UserCircle, LogIn, LogOut, KeyRound, HeartPulse,
+  Calendar, CheckCircle2, UserCheck, Sparkles
 } from 'lucide-react';
+
 
 interface JSRHeaderProps {
   onToggleConsole: () => void;
@@ -17,8 +18,15 @@ interface JSRHeaderProps {
   onOpenBlood: () => void;
   onOpenPayment: () => void;
   onOpenABHA: () => void;
-  onOpenAuthModal: () => void;
+  onOpenAuthModal?: () => void;
+  onOpenAICaseTaking?: () => void;
+  onOpenPatientPortal?: () => void;
+  onOpenMediKiosk?: () => void;
+  onOpenTriage?: () => void;
+  onOpenKioskMode?: () => void;
+  onOpenGeminiCopilot?: () => void;
 }
+
 
 export const JSRHeader: React.FC<JSRHeaderProps> = ({
   onToggleConsole,
@@ -30,8 +38,15 @@ export const JSRHeader: React.FC<JSRHeaderProps> = ({
   onOpenBlood,
   onOpenPayment,
   onOpenABHA,
-  onOpenAuthModal
+  onOpenAuthModal,
+  onOpenAICaseTaking,
+  onOpenPatientPortal,
+  onOpenMediKiosk,
+  onOpenTriage,
+  onOpenKioskMode,
+  onOpenGeminiCopilot
 }) => {
+
   const { user, logout } = useAuth();
 
   return (
@@ -46,7 +61,7 @@ export const JSRHeader: React.FC<JSRHeaderProps> = ({
             <span className="font-bold text-amber-400">JSR Healthcare Portal</span>
             <span className="hidden sm:inline text-slate-500">•</span>
             <span className="hidden sm:inline text-emerald-400 font-semibold">
-              Designed & Developed by Ankit Chaudhary
+              {language === 'en' ? 'Designed & Developed by JSR Team' : 'जेएसआर टीम द्वारा निर्मित'}
             </span>
           </div>
 
@@ -96,9 +111,43 @@ export const JSRHeader: React.FC<JSRHeaderProps> = ({
           </div>
         </div>
 
-        {/* Right: Quick Action Buttons (Prominent on all screens) */}
-        <div className="flex items-center gap-1.5 sm:gap-3">
+        {/* Right: Quick Action Buttons */}
+        <div className="flex items-center gap-1.5 sm:gap-2.5">
           
+          {/* AI Medical Copilot (Gemini & ChatGPT) Button */}
+          {onOpenGeminiCopilot && (
+            <button
+              onClick={onOpenGeminiCopilot}
+              className="flex items-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:opacity-95 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 transition shrink-0 border border-indigo-400/40 animate-pulse"
+            >
+              <Sparkles className="w-4 h-4 text-amber-300" />
+              <span>{language === 'en' ? 'AI Doctor Copilot' : 'एआई डॉक्टर कॉपायलट'}</span>
+            </button>
+          )}
+
+          {/* MediKiosk Flagship Button */}
+          {onOpenMediKiosk && (
+            <button
+              onClick={onOpenMediKiosk}
+              className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-gradient-to-r from-teal-600 via-emerald-600 to-teal-700 hover:opacity-95 text-white font-black text-xs shadow-lg shadow-teal-600/30 transition shrink-0 border border-teal-400/40"
+            >
+              <HeartPulse className="w-4 h-4 text-white" />
+              <span>{language === 'en' ? 'MediKiosk Intake' : 'मेडीकियोस्क मरीज प्रवेश'}</span>
+            </button>
+          )}
+
+
+          {/* Triage Desk Quick Trigger */}
+          {onOpenTriage && (
+            <button
+              onClick={onOpenTriage}
+              className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800 hover:bg-rose-100 text-rose-700 dark:text-rose-300 font-bold text-xs transition shrink-0"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-rose-600" />
+              <span>{language === 'en' ? 'Triage Desk' : 'ट्रायज डेस्क'}</span>
+            </button>
+          )}
+
           {/* User Session Badge */}
           {user ? (
             <div className="flex items-center gap-1.5 sm:gap-2 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-500/30 px-2 sm:px-3 py-1 rounded-2xl">
