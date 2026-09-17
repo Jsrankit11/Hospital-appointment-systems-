@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Heart, ExternalLink, Globe } from 'lucide-react';
+import { HeartPulse, Globe, Linkedin, Youtube, Twitter, Instagram } from 'lucide-react';
 
 interface ORSFooterProps {
   language: 'en' | 'hi';
@@ -7,76 +7,65 @@ interface ORSFooterProps {
 
 export const ORSFooter: React.FC<ORSFooterProps> = ({ language }) => {
   return (
-    <footer className="mt-16 bg-slate-900 border-t border-slate-800 text-slate-400 text-xs">
+    <footer className="mt-12 bg-slate-950 text-slate-400 text-xs border-t border-slate-800">
       
-      {/* Top Links Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+      {/* Main Footer Row */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
         
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 text-white font-black text-sm">
-            <img
-              src="/images/ORS1.png"
-              alt="ORS"
-              className="h-8 w-auto object-contain rounded"
-              onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
-            />
-            <span>ORS Portal</span>
+        {/* Left: Brand Logo & Tagline */}
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-md">
+            <HeartPulse className="w-5 h-5 text-white" />
           </div>
-          <p className="text-[11px] leading-relaxed text-slate-400">
-            {language === 'en'
-              ? 'Online Registration System (ORS) is a framework to link various hospitals across the country for Aadhaar-based online registration and appointment system.'
-              : 'ऑनलाइन पंजीकरण प्रणाली (ओआरएस) देश भर के विभिन्न अस्पतालों को आधार-आधारित ऑनलाइन पंजीकरण एवं अपॉइंटमेंट प्रणाली से जोड़ने वाला ढांचा है।'}
-          </p>
-        </div>
-
-        <div>
-          <h4 className="font-bold text-white uppercase tracking-wider text-[11px] mb-3">
-            National Portals
-          </h4>
-          <ul className="space-y-1.5 text-[11px]">
-            <li><a href="https://abdm.gov.in" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition">Ayushman Bharat Digital Mission (ABDM)</a></li>
-            <li><a href="https://nha.gov.in" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition">National Health Authority (NHA)</a></li>
-            <li><a href="https://mohfw.gov.in" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition">Ministry of Health & Family Welfare</a></li>
-            <li><a href="https://eraktkosh.in" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition">e-RaktKosh Blood Bank Registry</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-bold text-white uppercase tracking-wider text-[11px] mb-3">
-            Citizen Services
-          </h4>
-          <ul className="space-y-1.5 text-[11px]">
-            <li><span>Book OPD Appointment</span></li>
-            <li><span>Download Lab Diagnostic Reports</span></li>
-            <li><span>Check Blood Bank Stock</span></li>
-            <li><span>Online Hospital Fee Payment</span></li>
-            <li><span>e-Sanjeevani Tele-Consultation</span></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-bold text-white uppercase tracking-wider text-[11px] mb-3">
-            Helpdesk & Toll Free
-          </h4>
-          <div className="space-y-2 text-[11px]">
-            <p className="text-white font-bold">Toll Free: 1800-11-4477</p>
-            <p className="text-emerald-400 font-bold">Health Helpline: 1075</p>
-            <p className="text-slate-500">Center for Development of Advanced Computing (C-DAC) & NIC</p>
+          <div>
+            <h4 className="text-sm font-black text-white">JSR Healthcare</h4>
+            <p className="text-[10px] text-emerald-400 font-semibold">
+              {language === 'en' ? 'Care Today, Healthier Tomorrow' : 'आज देखभाल, स्वस्थ कल'}
+            </p>
           </div>
+        </div>
+
+        {/* Center: Navigation Links */}
+        <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-6 text-xs font-semibold text-slate-300">
+          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-emerald-400 transition">
+            Home
+          </button>
+          <span className="text-slate-700">•</span>
+          <button onClick={() => window.scrollTo({ top: 400, behavior: 'smooth' })} className="hover:text-emerald-400 transition">
+            Services
+          </button>
+          <span className="text-slate-700">•</span>
+          <button onClick={() => window.scrollTo({ top: 400, behavior: 'smooth' })} className="hover:text-emerald-400 transition">
+            Hospitals
+          </button>
+          <span className="text-slate-700">•</span>
+          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-emerald-400 transition">
+            About
+          </button>
+          <span className="text-slate-700">•</span>
+          <a href="mailto:support@jsrhealthcare.gov.in" className="hover:text-emerald-400 transition">
+            Contact
+          </a>
+        </div>
+
+        {/* Right: Social Media & National Tagline */}
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex items-center gap-3 text-slate-400">
+            <a href="#" className="hover:text-emerald-400 transition" title="LinkedIn"><Linkedin className="w-4 h-4" /></a>
+            <a href="#" className="hover:text-emerald-400 transition" title="YouTube"><Youtube className="w-4 h-4" /></a>
+            <a href="#" className="hover:text-emerald-400 transition" title="Twitter"><Twitter className="w-4 h-4" /></a>
+            <a href="#" className="hover:text-emerald-400 transition" title="Instagram"><Instagram className="w-4 h-4" /></a>
+          </div>
+          <span className="text-[11px] font-bold text-slate-300">
+            Building a Healthier India Together 🇮🇳
+          </span>
         </div>
 
       </div>
 
-      {/* Bottom Copyright & Disclaimer */}
-      <div className="border-t border-slate-800/80 py-4 bg-slate-950 text-slate-500 text-[10px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-          <p>© 2026 Online Registration System (ORS). Designed and Developed by National Informatics Centre (NIC), Government of India.</p>
-          <div className="flex items-center gap-4">
-            <span>Privacy Policy</span>
-            <span>Terms of Use</span>
-            <span>Accessibility Statement</span>
-          </div>
-        </div>
+      {/* Copyright Bar */}
+      <div className="border-t border-slate-900 py-3 bg-slate-950 text-center text-[10px] text-slate-500">
+        <p>© 2026 JSR Healthcare Portal. Designed & Developed by Ankit Chaudhary & JSR Team. Smart India Hackathon.</p>
       </div>
 
     </footer>
