@@ -6,30 +6,21 @@ import { useNotification } from '../../context/NotificationContext';
 import {
   Calendar, Clock, ShieldCheck, Building2, Stethoscope,
   UserCheck, CheckCircle2, ArrowRight, ArrowLeft, Printer,
-  Download, X, KeyRound, Smartphone, AlertCircle, Loader2, MapPin,
-  Sparkles, Star
+  Download, X, KeyRound, Smartphone, AlertCircle, Loader2, MapPin
 } from 'lucide-react';
 
 interface AppointmentBookingWizardProps {
   onClose: () => void;
   language: 'en' | 'hi';
-  initialHospitalId?: string;
-  initialDepartment?: string;
-  initialDoctor?: string;
 }
 
-export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> = ({
-  onClose,
-  language,
-  initialHospitalId = 'HOSP-KGMU-LUCKNOW',
-  initialDepartment,
-  initialDoctor
-}) => {
+export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> = ({ onClose, language }) => {
   const { user } = useAuth();
   const { addToast } = useNotification();
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
 
   // Step 1: Citizen Verification State (Pre-filled from logged in user if available)
+  const [method, setMethod] = useState<'AADHAAR' | 'MOBILE' | 'ABHA'>('AADHAAR');
   const [patientName, setPatientName] = useState(user?.name || 'Rohan Sharma');
   const [mobile, setMobile] = useState(user?.mobile || '9899001122');
   const [email, setEmail] = useState(user?.email || 'rohan.sharma@gmail.com');
@@ -41,77 +32,39 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
   const [hospitals, setHospitals] = useState<any[]>([]);
   const [selectedState, setSelectedState] = useState('All');
   const [searchCity, setSearchCity] = useState('');
-  const [selectedHospitalId, setSelectedHospitalId] = useState(initialHospitalId);
-  const [selectedHospitalName, setSelectedHospitalName] = useState("King George’s Medical University (KGMU Lucknow)");
+  const [selectedHospitalId, setSelectedHospitalId] = useState('HOSP-AIIMS-DELHI');
+  const [selectedHospitalName, setSelectedHospitalName] = useState('All India Institute of Medical Sciences (AIIMS New Delhi)');
 
   // Step 3: Department & Slot Selection
   const [departments, setDepartments] = useState<any[]>([]);
-  const [selectedDepartment, setSelectedDepartment] = useState(initialDepartment || 'Cardiology & Lari Centre');
-  const [selectedDoctor, setSelectedDoctor] = useState(initialDoctor || 'Dr. Arvind Sharma (Senior Consultant)');
+  const [selectedDepartment, setSelectedDepartment] = useState('Cardiology & Cardiac Surgery');
+  const [selectedDoctor, setSelectedDoctor] = useState('Dr. Arvind Sharma (Senior Consultant)');
   const [availableDates, setAvailableDates] = useState<any[]>([]);
   const [selectedDate, setSelectedDate] = useState('2026-08-08');
   const [timeSlots, setTimeSlots] = useState<any[]>([]);
   const [selectedSlot, setSelectedSlot] = useState('09:30 AM - 10:30 AM (Morning Session)');
   const [symptoms, setSymptoms] = useState('Routine Outpatient Health Checkup & Consultation');
 
-  // Doctor Profiles mapping for realistic display with avatars
-  const doctorProfiles: Record<string, { name: string; title: string; image: string; exp: string }> = {
-    'Cardiology & Lari Centre': {
-      name: 'Dr. Arvind Sharma (Senior Consultant)',
-      title: 'MD, DM Cardiology • 16+ Yrs Exp',
-      image: '/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg',
-      exp: 'Lari Cardiology Wing - Room 104'
-    },
-    'Trauma & Emergency Medicine': {
-      name: 'Dr. Rakesh Verma (Chief Physician)',
-      title: 'MBBS, MD Emergency Medicine • 18+ Yrs Exp',
-      image: '/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg',
-      exp: 'Centenary Trauma Centre - Room 02'
-    },
-    'Pediatrics (Kalam Centre)': {
-      name: 'Dr. Priya Sharma (Specialist)',
-      title: 'MD Pediatrics, Ayush Expert • 12+ Yrs Exp',
-      image: '/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg',
-      exp: 'Kalam Pediatric Complex - Room 108'
-    },
-    'Cardiology & Cardiac Surgery': {
-      name: 'Dr. Arvind Sharma (Senior Consultant)',
-      title: 'MD, DM Cardiology • 16+ Yrs Exp',
-      image: '/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg',
-      exp: 'Ground Floor, CNC Block'
-    },
-    'Neurology & Neurosurgery': {
-      name: 'Dr. Meera Reddy (Head of Dept)',
-      title: 'MS, MCh Neurosurgery • 15+ Yrs Exp',
-      image: '/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg',
-      exp: 'Neuro Sciences Wing - Room 204'
-    },
-    'Pediatrics & Neonatology': {
-      name: 'Dr. Priya Sharma (Consultant)',
-      title: 'MD Pediatrics • 12+ Yrs Exp',
-      image: '/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg',
-      exp: 'Pediatric OPD Wing'
-    },
-    'General Medicine & Diabetology': {
-      name: 'Dr. Rakesh Verma (Senior Physician)',
-      title: 'MD General Medicine • 18+ Yrs Exp',
-      image: '/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg',
-      exp: 'Main OPD Block - Room 06'
-    }
-  };
-
   // Dynamically assign doctor based on department
   useEffect(() => {
-    if (initialDoctor && selectedDepartment === initialDepartment) {
-      setSelectedDoctor(initialDoctor);
-      return;
-    }
-    const profile = doctorProfiles[selectedDepartment];
-    if (profile) {
-      setSelectedDoctor(profile.name);
-    } else {
-      setSelectedDoctor('Dr. Medical Officer (Consultant)');
-    }
+    const assignDoctor = (dept: string) => {
+      const doctors: Record<string, string> = {
+        'Cardiology & Cardiac Surgery': 'Dr. Arvind Sharma (Senior Consultant)',
+        'Neurology & Neurosurgery': 'Dr. Meera Reddy (Head of Dept)',
+        'Pediatrics & Neonatology': 'Dr. Sanjay Gupta (Consultant)',
+        'Orthopedics & Joint Replacement': 'Dr. Vikram Singh (Surgeon)',
+        'Gastroenterology & Hepatology': 'Dr. Neha Patel (Specialist)',
+        'Ophthalmology (Dr. RP Centre)': 'Dr. Amit Kumar (Surgeon)',
+        'General Medicine & Diabetology': 'Dr. Rakesh Verma (Senior Physician)',
+        'General Medicine': 'Dr. Rakesh Verma (Senior Physician)',
+        'Cardiology & Pulmonary Care': 'Dr. Arvind Sharma (Senior Consultant)',
+        'Orthopedics & Sports Injury Centre': 'Dr. Vikram Singh (Surgeon)',
+        'Burns & Plastic Surgery': 'Dr. Sunita Jain (Plastic Surgeon)',
+        'Pediatrics & Child Health': 'Dr. Sanjay Gupta (Consultant)'
+      };
+      return doctors[dept] || 'Dr. Medical Officer (Consultant)';
+    };
+    setSelectedDoctor(assignDoctor(selectedDepartment));
   }, [selectedDepartment]);
 
   // Step 4: Booked Appointment Confirmation
@@ -125,15 +78,7 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
         const res = await API.get(`/ors/hospitals?state=${selectedState}&query=${encodeURIComponent(searchCity)}`);
         if (res.data.success) {
           setHospitals(res.data.data);
-          // If initialHospitalId matches, pick it, else pick the first
-          const matched = res.data.data.find((h: any) => h.id === selectedHospitalId);
-          if (matched) {
-            setSelectedHospitalName(matched.name);
-            setDepartments(matched.departments || []);
-            if (matched.departments?.length > 0 && !initialDepartment) {
-              setSelectedDepartment(matched.departments[0].name);
-            }
-          } else if (res.data.data.length > 0) {
+          if (res.data.data.length > 0) {
             setSelectedHospitalId(res.data.data[0].id);
             setSelectedHospitalName(res.data.data[0].name);
             setDepartments(res.data.data[0].departments || []);
@@ -154,7 +99,7 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
   useEffect(() => {
     const fetchSlots = async () => {
       try {
-        const res = await API.get(`/ors/slots?hospitalId=${selectedHospitalId}&department=${encodeURIComponent(selectedDepartment)}`);
+        const res = await API.get(`/ors/slots?hospitalId=${selectedHospitalId}&department=${selectedDepartment}`);
         if (res.data.success) {
           setAvailableDates(res.data.availableDates);
           setTimeSlots(res.data.timeSlots);
@@ -167,9 +112,7 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
       }
     };
 
-    if (selectedHospitalId) {
-      fetchSlots();
-    }
+    fetchSlots();
   }, [selectedHospitalId, selectedDepartment]);
 
   const handleHospitalSelect = (h: any) => {
@@ -217,20 +160,13 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
     window.print();
   };
 
-  const topGovtHospitals = [
-    { id: 'HOSP-KGMU-LUCKNOW', name: "King George’s Medical University (KGMU)", city: 'Lucknow, UP', badge: 'State Apex Institute' },
-    { id: 'HOSP-AIIMS-DELHI', name: 'AIIMS New Delhi', city: 'Ansari Nagar, New Delhi', badge: 'National Apex' },
-    { id: 'HOSP-SGPGI-LUCKNOW', name: 'SGPGIMS Lucknow', city: 'Lucknow, UP', badge: 'Tertiary Care' },
-    { id: 'HOSP-SJH-DELHI', name: 'Safdarjung Hospital', city: 'South Delhi', badge: 'Central Govt' }
-  ];
-
   const indianStates = [
     'All',
-    'Uttar Pradesh',
     'Delhi',
     'Maharashtra',
     'Karnataka',
     'Tamil Nadu',
+    'Uttar Pradesh',
     'Gujarat',
     'Rajasthan',
     'Chandigarh',
@@ -242,13 +178,6 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
     'Uttarakhand',
     'West Bengal'
   ];
-
-  const currentDoctorProfile = doctorProfiles[selectedDepartment] || {
-    name: selectedDoctor,
-    title: 'Consultant Specialist',
-    image: '/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg',
-    exp: 'OPD Room 102'
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md animate-fade-in">
@@ -268,14 +197,14 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                 {language === 'en' ? 'Online OPD Registration & Appointment' : 'ऑनलाइन ओपीडी पंजीकरण एवं अपॉइंटमेंट'}
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Government of India • KGMU Lucknow & 500+ Apex Hospitals
+                National Portal for 500+ Apex Hospitals across all Indian States & Cities
               </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-900 dark:hover:text-white"
           >
             <X className="w-6 h-6" />
           </button>
@@ -285,9 +214,9 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
         <div className="grid grid-cols-4 gap-2 mb-8 no-print">
           {[
             { num: 1, label: language === 'en' ? '1. Patient Info' : '1. रोगी विवरण' },
-            { num: 2, label: language === 'en' ? '2. Govt Hospital' : '2. अस्पताल चुनें' },
-            { num: 3, label: language === 'en' ? '3. Dept & Doctor' : '3. विभाग एवं डॉक्टर' },
-            { num: 4, label: language === 'en' ? '4. OPD Slip & QR' : '4. पुष्टि एवं पर्ची' },
+            { num: 2, label: language === 'en' ? '2. State & Hospital' : '2. राज्य एवं अस्पताल' },
+            { num: 3, label: language === 'en' ? '3. Dept & Slot' : '3. विभाग एवं समय' },
+            { num: 4, label: language === 'en' ? '4. OPD Slip' : '4. पुष्टि एवं पर्ची' },
           ].map((s) => {
             const isDone = step > s.num;
             const isCurrent = step === s.num;
@@ -381,17 +310,17 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
             {/* Verification Badge */}
             <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-between text-xs">
               <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 font-bold">
-                <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
-                <span>Patient verified with National Health Authority Sandbox (Free Govt OPD).</span>
+                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                <span>Patient verified with National Health Authority Sandbox.</span>
               </div>
-              <span className="text-slate-500 font-mono hidden sm:inline">KGMU & AIIMS Empanelled</span>
+              <span className="text-slate-500 font-mono">Real-Time Database Sync</span>
             </div>
 
             <div className="flex justify-end pt-4 border-t border-slate-100 dark:border-slate-800">
               <button
                 type="button"
                 onClick={() => setStep(2)}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition cursor-pointer"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition"
               >
                 <span>Continue to Select Hospital</span>
                 <ArrowRight className="w-4 h-4" />
@@ -403,55 +332,10 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
         {/* --- STEP 2: SELECT INDIAN STATE & HOSPITAL --- */}
         {step === 2 && (
           <div className="space-y-6 no-print">
-            
-            {/* Quick 1-Click Selection for Top Govt Hospitals */}
-            <div className="space-y-2">
-              <label className="block text-xs font-black text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-                ⭐ 1-Click Quick Select: Top Government Apex Hospitals
-              </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
-                {topGovtHospitals.map((th) => {
-                  const isPicked = selectedHospitalId === th.id;
-                  return (
-                    <button
-                      key={th.id}
-                      type="button"
-                      onClick={() => {
-                        const h = hospitals.find((item) => item.id === th.id);
-                        if (h) {
-                          handleHospitalSelect(h);
-                        } else {
-                          setSelectedHospitalId(th.id);
-                          setSelectedHospitalName(th.name);
-                        }
-                      }}
-                      className={`p-3 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
-                        isPicked
-                          ? 'bg-emerald-600 text-white border-emerald-600 shadow-md scale-[1.02]'
-                          : 'bg-emerald-50/70 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800 text-slate-800 dark:text-slate-200 hover:border-emerald-400'
-                      }`}
-                    >
-                      <div>
-                        <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full inline-block mb-1 ${
-                          isPicked ? 'bg-white/20 text-white' : 'bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-300'
-                        }`}>
-                          {th.badge}
-                        </span>
-                        <h5 className="font-extrabold text-xs leading-tight">{th.name}</h5>
-                      </div>
-                      <p className={`text-[10px] mt-2 font-medium ${isPicked ? 'text-emerald-100' : 'text-slate-500 dark:text-slate-400'}`}>
-                        📍 {th.city}
-                      </p>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                  Filter by Indian State / UT
+                  Select Indian State / UT
                 </label>
                 <select
                   value={selectedState}
@@ -474,14 +358,14 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                   type="text"
                   value={searchCity}
                   onChange={(e) => setSearchCity(e.target.value)}
-                  placeholder="e.g. KGMU, Lucknow, AIIMS, Safdarjung, SGPGI..."
+                  placeholder="e.g. Mumbai, Bengaluru, Lucknow, Chennai, AIIMS..."
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-white"
                 />
               </div>
             </div>
 
             {/* Hospital Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-72 overflow-y-auto pr-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto pr-1">
               {hospitals.map((h) => {
                 const isSelected = selectedHospitalId === h.id;
 
@@ -515,7 +399,7 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                     </div>
 
                     <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-[11px]">
-                      <span className="text-slate-500">{h.departments?.length || 6} Speciality OPDs</span>
+                      <span className="text-slate-500">{h.departments?.length || 8} Speciality OPDs</span>
                       <span className="font-mono text-emerald-600 dark:text-emerald-400 font-bold">{h.bedsCount} Beds</span>
                     </div>
                   </div>
@@ -527,16 +411,16 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800"
               >
                 <ArrowLeft className="w-4 h-4" /> Back
               </button>
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition cursor-pointer"
+                className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition"
               >
-                <span>Select Department & Doctor</span>
+                <span>Select Department & Slot</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -546,29 +430,10 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
         {/* --- STEP 3: DEPARTMENT & TIME SLOT --- */}
         {step === 3 && (
           <div className="space-y-6 no-print">
-            
-            {/* Selected Hospital Display */}
-            <div className="p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <Building2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                <div>
-                  <h4 className="text-xs font-black text-slate-900 dark:text-white">{selectedHospitalName}</h4>
-                  <p className="text-[10px] text-slate-500 dark:text-slate-400">Selected Apex Hospital for OPD Consultation</p>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setStep(2)}
-                className="text-xs font-bold text-emerald-700 dark:text-emerald-300 hover:underline"
-              >
-                Change Hospital
-              </button>
-            </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                  Select Clinical Department / OPD Wing
+                  Select Clinical Department
                 </label>
                 <select
                   value={selectedDepartment}
@@ -576,14 +441,12 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-slate-900 dark:text-white"
                 >
                   {(departments.length > 0 ? departments : [
-                    { name: 'Cardiology & Lari Centre' },
-                    { name: 'Trauma & Emergency Medicine' },
-                    { name: 'Pediatrics (Kalam Centre)' },
                     { name: 'Cardiology & Cardiac Surgery' },
                     { name: 'Neurology & Neurosurgery' },
                     { name: 'Pediatrics & Neonatology' },
                     { name: 'Orthopedics & Joint Replacement' },
                     { name: 'Gastroenterology & Hepatology' },
+                    { name: 'Ophthalmology (Dr. RP Centre)' },
                     { name: 'General Medicine & Diabetology' }
                   ]).map((d: any) => (
                     <option key={d.name} value={d.name}>
@@ -595,22 +458,11 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                  Assigned Consultant Doctor & Room
+                  Assigned Consultant Doctor / Unit
                 </label>
-                <div className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 flex items-center gap-3">
-                  <img
-                    src={currentDoctorProfile.image}
-                    alt={currentDoctorProfile.name}
-                    className="w-10 h-10 rounded-xl object-cover border border-emerald-400 shrink-0"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <h5 className="font-extrabold text-xs text-slate-900 dark:text-white truncate">
-                      {currentDoctorProfile.name}
-                    </h5>
-                    <p className="text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold truncate">
-                      {currentDoctorProfile.title} • {currentDoctorProfile.exp}
-                    </p>
-                  </div>
+                <div className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-300 font-semibold cursor-not-allowed flex items-center justify-between">
+                  <span>{selectedDoctor}</span>
+                  <span className="px-2 py-0.5 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-[10px] uppercase">Assigned</span>
                 </div>
               </div>
             </div>
@@ -618,18 +470,10 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
             {/* Available Dates */}
             <div>
               <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
-                Available Appointment Dates (Next 7 Days)
+                Available Appointment Dates (Next 14 Days)
               </label>
               <div className="grid grid-cols-3 sm:grid-cols-7 gap-2">
-                {(availableDates.length > 0 ? availableDates : [
-                  { date: '2026-08-08', display: 'Fri, 08 Aug', availableSlotsCount: 14 },
-                  { date: '2026-08-09', display: 'Sat, 09 Aug', availableSlotsCount: 18 },
-                  { date: '2026-08-11', display: 'Mon, 11 Aug', availableSlotsCount: 22 },
-                  { date: '2026-08-12', display: 'Tue, 12 Aug', availableSlotsCount: 20 },
-                  { date: '2026-08-13', display: 'Wed, 13 Aug', availableSlotsCount: 16 },
-                  { date: '2026-08-14', display: 'Thu, 14 Aug', availableSlotsCount: 15 },
-                  { date: '2026-08-15', display: 'Fri, 15 Aug', availableSlotsCount: 12 }
-                ]).slice(0, 7).map((d) => {
+                {availableDates.slice(0, 7).map((d) => {
                   const isSelected = selectedDate === d.date;
 
                   return (
@@ -637,7 +481,7 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                       key={d.date}
                       type="button"
                       onClick={() => setSelectedDate(d.date)}
-                      className={`p-2.5 rounded-2xl border text-center transition-all cursor-pointer ${
+                      className={`p-2.5 rounded-2xl border text-center transition-all ${
                         isSelected
                           ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
                           : 'bg-white dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 hover:border-emerald-500'
@@ -659,12 +503,7 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                 Select Time Slot (Morning / Afternoon Sessions)
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {(timeSlots.length > 0 ? timeSlots : [
-                  { id: 'ts-1', time: '09:00 AM - 10:00 AM', session: 'Morning Session' },
-                  { id: 'ts-2', time: '10:00 AM - 11:00 AM', session: 'Morning Session' },
-                  { id: 'ts-3', time: '11:00 AM - 12:00 PM', session: 'Mid-Day Session' },
-                  { id: 'ts-4', time: '02:00 PM - 03:00 PM', session: 'Afternoon Session' }
-                ]).map((ts) => {
+                {timeSlots.map((ts) => {
                   const isSelected = selectedSlot === ts.time;
 
                   return (
@@ -672,7 +511,7 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                       key={ts.id}
                       type="button"
                       onClick={() => setSelectedSlot(ts.time)}
-                      className={`p-3 rounded-2xl border text-left flex items-center justify-between transition-all cursor-pointer ${
+                      className={`p-3 rounded-2xl border text-left flex items-center justify-between transition-all ${
                         isSelected
                           ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-800 dark:text-emerald-300 font-bold'
                           : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800'
@@ -691,13 +530,13 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
 
             <div>
               <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                Reason for Visit / Health Symptoms
+                Reason for Visit / Health Complaint
               </label>
               <input
                 type="text"
                 value={symptoms}
                 onChange={(e) => setSymptoms(e.target.value)}
-                placeholder="e.g. Chest pain, follow-up consultation, blood sugar review"
+                placeholder="e.g. Chest pain, blood pressure follow-up"
                 className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-white"
               />
             </div>
@@ -706,7 +545,7 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
               <button
                 type="button"
                 onClick={() => setStep(2)}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-800"
               >
                 <ArrowLeft className="w-4 h-4" /> Back
               </button>
@@ -714,9 +553,9 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                 type="button"
                 disabled={loading}
                 onClick={handleFinalBooking}
-                className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition cursor-pointer"
+                className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition"
               >
-                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Confirm & Generate Official OPD Card'}
+                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Confirm & Generate OPD Card'}
                 {!loading && <ArrowRight className="w-4 h-4" />}
               </button>
             </div>
@@ -731,10 +570,10 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
             <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-500/40 text-center space-y-1 no-print">
               <CheckCircle2 className="w-8 h-8 text-emerald-500 mx-auto" />
               <h4 className="text-base font-black text-emerald-900 dark:text-emerald-300">
-                Official OPD Appointment Confirmed!
+                Online OPD Registration Slip Confirmed!
               </h4>
               <p className="text-xs text-slate-600 dark:text-slate-400">
-                SMS alert dispatched to {bookedAppointment.mobile}. Please show this digital slip or barcode at the hospital kiosk/reception.
+                SMS alert dispatched to {bookedAppointment.mobile}. Please present this slip or token at the OPD Room.
               </p>
             </div>
 
@@ -745,24 +584,16 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
             >
               {/* Header */}
               <div className="flex items-center justify-between pb-3 border-b-2 border-black">
-                <div className="flex items-center gap-3">
-                  <img
-                    src="/images/ORS1.png"
-                    alt="ORS"
-                    className="h-9 w-auto object-contain"
-                    onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
-                  />
-                  <div>
-                    <h4 className="font-black text-base text-black uppercase tracking-wide">
-                      {bookedAppointment.hospitalName}
-                    </h4>
-                    <p className="text-[10px] text-black uppercase font-bold">
-                      Online Registration System (ORS) • MoHFW • Government of India
-                    </p>
-                  </div>
+                <div>
+                  <h4 className="font-black text-base text-black uppercase tracking-wide">
+                    {bookedAppointment.hospitalName}
+                  </h4>
+                  <p className="text-[10px] text-black uppercase font-bold">
+                    Online Registration System (ORS) • MoHFW • Government of India
+                  </p>
                 </div>
                 <div className="text-right">
-                  <span className="text-[10px] font-mono text-black font-semibold">Booking Reference:</span>
+                  <span className="text-[10px] font-mono text-black">Booking Ref:</span>
                   <p className="font-mono font-black text-sm text-black">
                     {bookedAppointment.id}
                   </p>
@@ -798,7 +629,7 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                 </div>
                 <div className="text-right">
                   <span className="text-[10px] text-black block font-semibold">OPD Room</span>
-                  <span className="font-bold text-black">{bookedAppointment.opdRoom || 'OPD Room 104'}</span>
+                  <span className="font-bold text-black">{bookedAppointment.opdRoom}</span>
                 </div>
               </div>
 
@@ -811,32 +642,25 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
                 </div>
                 <div className="text-right">
                   <span className="text-[10px] text-black block font-semibold">Registration Fee</span>
-                  <span className="font-bold text-black">FREE (Government Hospital Scheme)</span>
+                  <span className="font-bold text-black">FREE (Govt Hospital Scheme)</span>
                 </div>
               </div>
 
-              {/* QR Code & Fast-Pass Scan Image */}
-              <div className="pt-4 border-t-2 border-black flex items-center justify-between gap-4">
+              {/* Barcode & QR Code Section */}
+              <div className="pt-4 border-t-2 border-black flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <img
-                    src="/images/qr_code_scan.png"
-                    alt="Scan QR Code"
-                    className="w-16 h-16 object-contain border border-black rounded-lg p-0.5"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/images/scan_qr_code.png';
-                    }}
-                  />
+                  <div className="p-1 bg-white border border-black rounded-lg">
+                    <QRCodeSVG value={bookedAppointment.qrData || 'https://ors.gov.in'} size={60} />
+                  </div>
                   <div className="text-[10px] text-black">
-                    <p className="font-bold text-black uppercase">Scan QR Code For OPD Token</p>
-                    <p className="font-mono text-xs tracking-widest font-black">{bookedAppointment.barcode || 'ORS-9821-4820'}</p>
-                    <p className="text-[9px] text-black">Fast-Track Entry at KGMU / AIIMS Kiosk</p>
+                    <p className="font-bold text-black">Scan at Kiosk</p>
+                    <p className="font-mono text-xs tracking-widest">{bookedAppointment.barcode}</p>
                   </div>
                 </div>
 
                 <div className="text-right text-[10px] text-black">
-                  <p className="font-bold">Ayushman Bharat Digital Mission (ABDM)</p>
-                  <p>ors.gov.in • abdm.gov.in • kgmu.org</p>
-                  <p className="font-mono text-[9px] text-black/80 mt-0.5">Govt of India Verified</p>
+                  <p>Ayushman Bharat Digital Mission</p>
+                  <p className="font-bold text-black">ors.gov.in • abdm.gov.in</p>
                 </div>
               </div>
             </div>
@@ -846,7 +670,7 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
               <button
                 type="button"
                 onClick={handlePrint}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs hover:bg-slate-100 dark:hover:bg-slate-800 transition"
               >
                 <Printer className="w-4 h-4" />
                 <span>Print Official OPD Slip (Clean Card)</span>
@@ -854,7 +678,7 @@ export const AppointmentBookingWizard: React.FC<AppointmentBookingWizardProps> =
               <button
                 type="button"
                 onClick={onClose}
-                className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition cursor-pointer"
+                className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition"
               >
                 Done
               </button>
