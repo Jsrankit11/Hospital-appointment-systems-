@@ -2,26 +2,29 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const morgan = require('morgan');
 const path = require('path');
 
 const { connectDB, memoryStore, saveLocalStore } = require('../server/src/config/db');
 const { getSeedData } = require('../server/src/seeds/seedData');
-const { apiLimiter, errorHandler } = require('../server/src/middlewares/rateLimiter');
+const { errorHandler } = require('../server/src/middlewares/rateLimiter');
 const apiRoutes = require('../server/src/routes/api');
 
 const app = express();
+
+app.set('trust proxy', 1);
 
 // Security & Middlewares
 app.use(helmet({
   contentSecurityPolicy: false,
   crossOriginResourcePolicy: false
 }));
+
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ extended: true, limit: '20mb' }));
 
@@ -29,11 +32,11 @@ app.use(express.urlencoded({ extended: true, limit: '20mb' }));
 app.use('/uploads', express.static(path.join(__dirname, '../server/uploads')));
 app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
 
-// Health Check on both /api/health and /health
+// Health Check
 app.get(['/api/health', '/health', '/api', '/'], (req, res) => {
-  res.json({
+  res.status(200).json({
     status: 'HEALTHY',
-    service: 'JSR Healthcare (Vercel Full-Stack Live)',
+    service: 'JSR Healthcare (Vercel Serverless Live)',
     uptime: process.uptime(),
     timestamp: new Date().toISOString(),
     records: {
@@ -49,11 +52,11 @@ app.get(['/api/health', '/health', '/api', '/'], (req, res) => {
   });
 });
 
-// Mount routes on both /api and root to handle any Vercel rewrite structure
+// Mount routes on both /api and root
 app.use('/api', apiRoutes);
 app.use('/', apiRoutes);
 
-// Seed data function ensuring all Indian hospitals and accounts are loaded
+// Seed data initialization
 const initializeData = () => {
   try {
     const seed = getSeedData();
@@ -93,4 +96,6 @@ const initializeData = () => {
 initializeData();
 app.use(errorHandler);
 
-module.exports = app;
+module.exports = (req, res) => {
+  return app(req, res);
+};
