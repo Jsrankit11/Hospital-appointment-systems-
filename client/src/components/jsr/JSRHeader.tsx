@@ -93,8 +93,8 @@ export const JSRHeader: React.FC<JSRHeaderProps> = ({
         
         {/* Left: JSR Logo & Title */}
         <div className="flex items-center gap-2.5 sm:gap-3.5 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 text-white flex items-center justify-center font-black text-base sm:text-xl shadow-lg shadow-teal-900/20 shrink-0">
-            JSR
+          <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-white dark:bg-slate-800 border-2 border-emerald-500/30 p-1 flex items-center justify-center shadow-lg shadow-teal-900/10 shrink-0">
+            <img src="/images/ORS1.png" alt="JSR Healthcare" className="w-full h-full object-contain" />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -114,14 +114,18 @@ export const JSRHeader: React.FC<JSRHeaderProps> = ({
         {/* Right: Quick Action Buttons */}
         <div className="flex items-center gap-1.5 sm:gap-2.5">
           
-          {/* AI Medical Copilot (Gemini & ChatGPT) Button */}
+          {/* AI Medical Copilot Doctor Button */}
           {onOpenGeminiCopilot && (
             <button
               onClick={onOpenGeminiCopilot}
-              className="flex items-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:opacity-95 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 transition shrink-0 border border-indigo-400/40 animate-pulse"
+              className="flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-teal-700 via-emerald-700 to-teal-800 hover:opacity-95 text-white font-bold text-xs shadow-lg shadow-teal-700/30 transition shrink-0 border border-teal-400/40"
             >
-              <Sparkles className="w-4 h-4 text-amber-300" />
-              <span>{language === 'en' ? 'AI Doctor Copilot' : 'एआई डॉक्टर कॉपायलट'}</span>
+              <img
+                src="/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg"
+                alt="AI Doctor"
+                className="w-5 h-5 rounded-full object-cover ring-2 ring-emerald-300"
+              />
+              <span>{language === 'en' ? 'AI Voice Doctor' : 'एआई वॉयस डॉक्टर'}</span>
             </button>
           )}
 

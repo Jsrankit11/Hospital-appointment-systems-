@@ -354,14 +354,22 @@ const AppContent: React.FC = () => {
       <div className="fixed bottom-6 right-6 z-40 hidden sm:flex flex-col items-end gap-2 no-print">
         <button
           onClick={() => setShowGeminiCopilotModal(true)}
-          className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-teal-500 hover:from-indigo-500 hover:to-teal-400 text-white font-bold text-xs shadow-2xl shadow-indigo-500/40 hover:scale-105 transition-all duration-300 border-2 border-white/30"
-          title="Open AI Medical Copilot (Voice & Text)"
+          className="group flex items-center gap-3 px-4 py-2.5 rounded-full bg-slate-900/95 hover:bg-slate-800 text-white font-bold text-xs shadow-2xl shadow-teal-900/50 hover:scale-105 transition-all duration-300 border-2 border-emerald-500/60"
+          title="Open AI Medical Doctor (Voice & Text)"
         >
           <div className="relative">
+            <img
+              src="/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg"
+              alt="Doctor"
+              className="w-9 h-9 rounded-full object-cover ring-2 ring-emerald-400"
+            />
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping absolute -top-0.5 -right-0.5"></span>
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 block"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 block absolute -top-0.5 -right-0.5"></span>
           </div>
-          <span className="text-sm">✨ Voice AI Doctor (बोलकर पूछें)</span>
+          <div className="text-left">
+            <span className="text-xs font-black text-emerald-300 block">JSR Voice Doctor</span>
+            <span className="text-[10px] text-slate-300">बोलकर तुरंत पूछें 🎤</span>
+          </div>
         </button>
       </div>
 
@@ -380,9 +388,13 @@ const AppContent: React.FC = () => {
 
         <button
           onClick={() => setShowGeminiCopilotModal(true)}
-          className="flex flex-col items-center gap-0.5 text-[10px] font-bold py-1 px-2 rounded-xl text-indigo-600 dark:text-indigo-400"
+          className="flex flex-col items-center gap-0.5 text-[10px] font-bold py-1 px-2 rounded-xl text-teal-600 dark:text-teal-400"
         >
-          <span className="text-base animate-bounce">✨</span>
+          <img
+            src="/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg"
+            alt="AI Doctor"
+            className="w-5 h-5 rounded-full object-cover ring-1 ring-teal-400"
+          />
           <span>AI Doctor</span>
         </button>
 

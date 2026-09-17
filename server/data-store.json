@@ -5,7 +5,7 @@
       "name": "Dr. Randeep Guleria (Medical Director)",
       "email": "admin@hams.gov.in",
       "mobile": "9811223344",
-      "password": "$2a$10$8kpuV9dbVZ2nGZIMIxFfN.tDYEPzyUDHcGvKkfHOdBpAitBERJvoO",
+      "password": "$2a$10$unJFGstpSaAxuX97sp2Cs.6FixeEWJqAATpZ..9Viv87ObfxdR8YO",
       "plainPasswordSaved": "Admin@123",
       "role": "SUPER_ADMIN",
       "department": "Hospital Administration & ORS Portal Governance",
@@ -20,7 +20,7 @@
       "name": "Dr. Arvind Sharma",
       "email": "arvind.cardio@hams.gov.in",
       "mobile": "9822334455",
-      "password": "$2a$10$N4Qo7xw5/FTmEZvTCbOoyuJLhFs6MLX5mdqGTG4q4MXpXHguub05O",
+      "password": "$2a$10$4ELcnxiRBlJPuh6U0Gt1UeQDt40pLOXO2oR6tUJuL.JNhEm9VbtNG",
       "plainPasswordSaved": "Doctor@123",
       "role": "DOCTOR",
       "department": "Cardiology & Cardiac Surgery",
@@ -39,7 +39,7 @@
       "name": "Dr. Priya Nair",
       "email": "priya.neuro@hams.gov.in",
       "mobile": "9833445566",
-      "password": "$2a$10$N4Qo7xw5/FTmEZvTCbOoyuJLhFs6MLX5mdqGTG4q4MXpXHguub05O",
+      "password": "$2a$10$4ELcnxiRBlJPuh6U0Gt1UeQDt40pLOXO2oR6tUJuL.JNhEm9VbtNG",
       "plainPasswordSaved": "Doctor@123",
       "role": "DOCTOR",
       "department": "Neurology & Brain Spine",
@@ -58,7 +58,7 @@
       "name": "Sunita Mehra",
       "email": "reception@hams.gov.in",
       "mobile": "9855667788",
-      "password": "$2a$10$8kpuV9dbVZ2nGZIMIxFfN.tDYEPzyUDHcGvKkfHOdBpAitBERJvoO",
+      "password": "$2a$10$unJFGstpSaAxuX97sp2Cs.6FixeEWJqAATpZ..9Viv87ObfxdR8YO",
       "plainPasswordSaved": "Admin@123",
       "role": "RECEPTIONIST",
       "department": "Central OPD Registration & Helpdesk",
@@ -73,7 +73,7 @@
       "name": "Anand Kulkarni",
       "email": "lab@hams.gov.in",
       "mobile": "9866778899",
-      "password": "$2a$10$8kpuV9dbVZ2nGZIMIxFfN.tDYEPzyUDHcGvKkfHOdBpAitBERJvoO",
+      "password": "$2a$10$unJFGstpSaAxuX97sp2Cs.6FixeEWJqAATpZ..9Viv87ObfxdR8YO",
       "plainPasswordSaved": "Admin@123",
       "role": "LAB_TECHNICIAN",
       "department": "Central Pathology & Diagnostic Lab",
@@ -88,7 +88,7 @@
       "name": "Vikas Gupta",
       "email": "pharmacy@hams.gov.in",
       "mobile": "9877889900",
-      "password": "$2a$10$8kpuV9dbVZ2nGZIMIxFfN.tDYEPzyUDHcGvKkfHOdBpAitBERJvoO",
+      "password": "$2a$10$unJFGstpSaAxuX97sp2Cs.6FixeEWJqAATpZ..9Viv87ObfxdR8YO",
       "plainPasswordSaved": "Admin@123",
       "role": "PHARMACIST",
       "department": "Jan Aushadhi & Central Pharmacy",
@@ -103,7 +103,7 @@
       "name": "Rohan Sharma",
       "email": "rohan.sharma@gmail.com",
       "mobile": "9899001122",
-      "password": "$2a$10$Dan5WrxqM0sVR8Z5ZEI2k.9BMA/6inXl9WIRooelUn0ReCCrbGs1y",
+      "password": "$2a$10$W4bUXhHJqGtZXwxkp1Se4eIEnQ2uNjprZku4M8fMMlBJ2gCBB5UlS",
       "plainPasswordSaved": "Patient@123",
       "role": "PATIENT",
       "department": "Citizen Health Portal",
@@ -295,7 +295,7 @@
       "symptoms": "Mild chest tightness, elevated resting pulse, fatigue after exertion",
       "barcode": "*ORS-AIIMS-2026-101*",
       "qrData": "https://ors.gov.in/verify?id=ORS-DEL-2026-101&pat=Rohan%20Sharma&hosp=AIIMS",
-      "createdAt": "2026-09-17T17:31:35.046Z"
+      "createdAt": "2026-09-17T18:21:27.016Z"
     },
     {
       "id": "ORS-DEL-2026-102",
@@ -320,7 +320,7 @@
       "symptoms": "🚨 Severe retrosternal crushing chest pain radiating to left jaw with cold sweating",
       "barcode": "*ORS-EMG-2026-102*",
       "qrData": "https://ors.gov.in/verify?id=ORS-DEL-2026-102&pat=Vikram%20Malhotra&hosp=AIIMS",
-      "createdAt": "2026-09-17T17:31:35.046Z"
+      "createdAt": "2026-09-17T18:21:27.016Z"
     },
     {
       "id": "ORS-DEL-2026-103",
@@ -345,7 +345,7 @@
       "symptoms": "High fever (103°F) for 4 days with severe neck stiffness and confusion",
       "barcode": "*ORS-AIIMS-2026-103*",
       "qrData": "https://ors.gov.in/verify?id=ORS-DEL-2026-103&pat=Sunita%20Devi&hosp=AIIMS",
-      "createdAt": "2026-09-17T17:31:35.046Z"
+      "createdAt": "2026-09-17T18:21:27.016Z"
     },
     {
       "id": "ORS-DEL-2026-104",
@@ -370,7 +370,7 @@
       "symptoms": "Vishamagni, irregular digestion, chronic fatigue, anxiety-induced insomnia",
       "barcode": "*ORS-AIIA-2026-104*",
       "qrData": "https://ors.gov.in/verify?id=ORS-DEL-2026-104&pat=Ananya%20Iyer&hosp=AIIA",
-      "createdAt": "2026-09-17T17:31:35.046Z"
+      "createdAt": "2026-09-17T18:21:27.016Z"
     },
     {
       "id": "ORS-DEL-2026-105",
@@ -395,7 +395,7 @@
       "symptoms": "Diabetes routine check, numbness in feet, fasting sugar elevated (148 mg/dL)",
       "barcode": "*ORS-AIIMS-2026-105*",
       "qrData": "https://ors.gov.in/verify?id=ORS-DEL-2026-105&pat=Rajesh%20Verma&hosp=AIIMS",
-      "createdAt": "2026-09-17T17:31:35.046Z"
+      "createdAt": "2026-09-17T18:21:27.016Z"
     }
   ],
   "ehrs": [],
@@ -691,21 +691,7 @@
       "lastUpdated": "Today"
     }
   ],
-  "aiConversations": [
-    {
-      "sessionId": "AI-SESS-1789666580918",
-      "patientId": "PAT-1001",
-      "language": "en",
-      "isAyush": false,
-      "stepIndex": 1,
-      "answers": {
-        "CHIEF_COMPLAINT": "Chest Pain / Heaviness"
-      },
-      "triageLevel": "RED",
-      "createdAt": "2026-09-17T17:36:20.918Z",
-      "emergencyAlert": "🚨 CRITICAL CARDIAC RED FLAG"
-    }
-  ],
+  "aiConversations": [],
   "scannedDocuments": [],
   "ayushProfiles": [],
   "clinicalSummaries": [],
@@ -724,7 +710,7 @@
       "triggerSymptom": "Sudden retrosternal chest pain radiating to left jaw with profuse cold sweating",
       "clinicalInstruction": "Immediate STAT 12-lead ECG, Troponin-I, and emergency physician evaluation required. Bypass OPD queue.",
       "status": "TRIGGERED",
-      "reportedAt": "2026-09-17T17:16:34.633Z",
+      "reportedAt": "2026-09-17T18:06:26.322Z",
       "tokenNumber": "E-01"
     },
     {
@@ -740,8 +726,8 @@
       "triggerSymptom": "High continuous fever (103°F) for 4 days with severe neck stiffness and photophobia",
       "clinicalInstruction": "Urgent lumbar puncture and infectious disease consultation indicated.",
       "status": "ACKNOWLEDGED",
-      "reportedAt": "2026-09-17T16:46:34.634Z",
-      "acknowledgedAt": "2026-09-17T17:01:34.634Z",
+      "reportedAt": "2026-09-17T17:36:26.322Z",
+      "acknowledgedAt": "2026-09-17T17:51:26.322Z",
       "tokenNumber": "E-02"
     }
   ],

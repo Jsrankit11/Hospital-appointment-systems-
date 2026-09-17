@@ -272,8 +272,12 @@ export const AICaseTakingModal: React.FC<AICaseTakingModalProps> = ({
         {/* Header Bar */}
         <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-r from-teal-500/15 via-emerald-500/10 to-indigo-500/10">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-teal-600 to-emerald-500 text-white flex items-center justify-center shadow-lg shadow-teal-500/30">
-              <Stethoscope className="w-5 h-5" />
+            <div className="w-11 h-11 rounded-2xl overflow-hidden border-2 border-emerald-400 bg-slate-800 text-white flex items-center justify-center shadow-lg shadow-teal-500/20">
+              <img
+                src="/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg"
+                alt="Doctor"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
               <div className="flex items-center gap-2">

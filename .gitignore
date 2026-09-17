@@ -31,3 +31,5 @@ Thumbs.db
 *.log
 .system_generated/
 scratch/
+
+.vercel
