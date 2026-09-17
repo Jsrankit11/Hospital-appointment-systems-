@@ -58,6 +58,13 @@ const AppContent: React.FC = () => {
   // Modals
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showBookingWizard, setShowBookingWizard] = useState(false);
+  const [bookingType, setBookingType] = useState<'GENERAL' | 'EMERGENCY' | 'QR'>('GENERAL');
+
+  const handleOpenBooking = (type: 'GENERAL' | 'EMERGENCY' | 'QR' = 'GENERAL') => {
+    setBookingType(type);
+    setShowBookingWizard(true);
+  };
+
   const [showLabLookup, setShowLabLookup] = useState(false);
   const [showBloodPortal, setShowBloodPortal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -247,6 +254,7 @@ const AppContent: React.FC = () => {
         <AppointmentBookingWizard
           onClose={() => setShowBookingWizard(false)}
           language={language}
+          initialBookingType={bookingType}
         />
       )}
       {showLabLookup && (
