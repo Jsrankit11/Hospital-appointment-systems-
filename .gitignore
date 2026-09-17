@@ -31,5 +31,7 @@ Thumbs.db
 *.log
 .system_generated/
 scratch/
+__pycache__/
+*.pyc
 
 .vercel

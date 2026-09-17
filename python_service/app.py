@@ -10,6 +10,47 @@ from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 import re
 import datetime
+import os
+import json
+import urllib.request
+
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or os.environ.get("VITE_GEMINI_API_KEY")
+
+def call_gemini_api(message: str, language: str = "hi", chat_history: Optional[List[Dict[str, str]]] = None) -> Optional[str]:
+    if not GEMINI_API_KEY:
+        return None
+    
+    system_prompt = (
+        f"You are JSR AI Clinical Doctor, an empathetic and highly accurate hospital AI assistant. "
+        f"Respond in language: '{language}' (If 'hi' or 'hinglish', use natural Hindi; if 'en', English; if regional, use respective language). "
+        f"Provide structured explanations, lifestyle guidance, supportive AYUSH/home remedies where applicable, and clinical precautions. "
+        f"Include a brief standard medical disclaimer."
+    )
+    
+    contents = []
+    if chat_history:
+        for ch in chat_history[-4:]:
+            role = "model" if ch.get("sender") == "assistant" else "user"
+            contents.append({"role": role, "parts": [{"text": str(ch.get("text", ""))}]})
+            
+    contents.append({"role": "user", "parts": [{"text": f"{system_prompt}\n\nPatient Query: {message}"}]})
+    
+    models = ["gemini-1.5-flash", "gemini-1.5-pro", "gemini-2.0-flash"]
+    for model in models:
+        try:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_API_KEY}"
+            payload = json.dumps({"contents": contents, "generationConfig": {"temperature": 0.4, "maxOutputTokens": 1000}}).encode("utf-8")
+            req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=5) as response:
+                res_data = json.loads(response.read().decode("utf-8"))
+                candidates = res_data.get("candidates", [])
+                if candidates and "content" in candidates[0]:
+                    parts = candidates[0]["content"].get("parts", [])
+                    if parts and "text" in parts[0]:
+                        return parts[0]["text"]
+        except Exception:
+            continue
+    return None
 
 app = FastAPI(
     title="MediKiosk AI & Medical OCR Microservice",
@@ -133,7 +174,22 @@ def medical_copilot_chat(req: CopilotChatRequest):
             "instruction": "Immediately consult Emergency OPD or call 108. Avoid physical exertion." if lang != 'hi' else "कृपया तुरंत इमरजेंसी वार्ड (OPD) पहुंचे या 108 एम्बुलेंस बुलाएं। आराम करें और भारी काम न करें।"
         }
 
-    # Generate response based on language
+    # Try Direct Gemini API first
+    gemini_resp = call_gemini_api(req.message, lang, req.chatHistory)
+    if gemini_resp:
+        return {
+            "success": True,
+            "query": req.message,
+            "language": lang,
+            "isRedFlag": is_red_flag,
+            "redFlagAlert": red_flag_alert,
+            "response": gemini_resp,
+            "differentialDiagnosis": ["Cardiovascular/Respiratory Evaluation" if is_red_flag else "AI Diagnostic Reasoning Generated"],
+            "suggestedActions": ["Emergency Triage Consult" if is_red_flag else "Consult Attending Physician", "Scan Prescription via OCR"],
+            "timestamp": datetime.datetime.utcnow().isoformat()
+        }
+
+    # Generate response based on language fallback
     response_text = ""
     suggested_actions = []
     differential_diagnosis = []

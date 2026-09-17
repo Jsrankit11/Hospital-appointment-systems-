@@ -653,9 +653,125 @@ class AICaseTakingService {
     };
   }
 
-  // 7. ChatGPT & Gemini Style Clinical Medical Copilot (Multilingual: Hindi, English, Regional)
+  // Google Gemini API Direct Clinical Reasoning Caller
+  async callGeminiAPI({ message, language = 'hi', patientContext = null, chatHistory = [] }) {
+    const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || process.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) return null;
+
+    const https = require('https');
+    const systemPrompt = `You are JSR AI Clinical Doctor, an empathetic and highly accurate hospital AI clinical assistant.
+Respond in language: "${language}" (If 'hi' or 'hinglish', use natural conversational Hindi/Hinglish; if 'en', use English; if 'mr', 'bn', 'ta', 'te', 'gu', use that language).
+Instructions:
+- Provide direct, clear explanation of the user's symptoms, lab tests, or medicines.
+- Provide practical lifestyle/diet/hydration advice and AYUSH/Ayurvedic supportive measures where relevant.
+- Include suggested diagnostic tests and red-flag alerts if symptoms are severe.
+- Add a gentle medical disclaimer (consult a doctor before taking medicines).
+Keep the format structured with bullet points and bold headers.`;
+
+    const contents = [];
+    if (chatHistory && Array.isArray(chatHistory)) {
+      chatHistory.slice(-4).forEach(ch => {
+        contents.push({
+          role: ch.sender === 'assistant' ? 'model' : 'user',
+          parts: [{ text: String(ch.text || '') }]
+        });
+      });
+    }
+    contents.push({
+      role: 'user',
+      parts: [{ text: `${systemPrompt}\n\nPatient Query: ${message}` }]
+    });
+
+    const models = ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-2.0-flash'];
+
+    for (const model of models) {
+      try {
+        const postData = JSON.stringify({
+          contents,
+          generationConfig: {
+            temperature: 0.4,
+            maxOutputTokens: 1000
+          }
+        });
+
+        const resText = await new Promise((resolve, reject) => {
+          const req = https.request({
+            hostname: 'generativelanguage.googleapis.com',
+            path: `/v1beta/models/${model}:generateContent?key=${apiKey}`,
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Content-Length': Buffer.byteLength(postData)
+            },
+            timeout: 5000
+          }, (res) => {
+            let data = '';
+            res.on('data', chunk => data += chunk);
+            res.on('end', () => {
+              try {
+                const parsed = JSON.parse(data);
+                if (parsed.candidates && parsed.candidates[0]?.content?.parts?.[0]?.text) {
+                  resolve(parsed.candidates[0].content.parts[0].text);
+                } else {
+                  reject(new Error(parsed.error?.message || 'No candidate in response'));
+                }
+              } catch (e) {
+                reject(e);
+              }
+            });
+          });
+
+          req.on('error', reject);
+          req.on('timeout', () => {
+            req.destroy();
+            reject(new Error('Gemini API timeout'));
+          });
+          req.write(postData);
+          req.end();
+        });
+
+        if (resText && resText.trim().length > 0) {
+          return resText;
+        }
+      } catch (e) {
+        // Fallback to next model
+      }
+    }
+    return null;
+  }
+
+  // 7. Clinical Medical Copilot (Multilingual: Hindi, English, Regional)
   async medicalCopilotChat({ message, language = 'hi', patientContext = null, chatHistory = [] }) {
-    // Try calling Python microservice if running
+    // 1. Try Gemini API directly
+    try {
+      const geminiText = await this.callGeminiAPI({ message, language, patientContext, chatHistory });
+      if (geminiText) {
+        const query = (message || '').trim().toLowerCase();
+        const triage = this.detectRedFlags(query);
+
+        return {
+          success: true,
+          query: message,
+          language,
+          isRedFlag: triage.hasRedFlag,
+          redFlagAlert: triage.hasRedFlag ? {
+            level: 'EMERGENCY_CODE_RED',
+            title: language === 'hi' ? '🚨 आपातकालीन चेतावनी' : '🚨 EMERGENCY ALERT',
+            instruction: triage.summary
+          } : null,
+          response: geminiText,
+          differentialDiagnosis: triage.hasRedFlag ? ['Emergency Triage Priority 1', 'Clinical Evaluation Required'] : ['AI Diagnostic Reasoning Generated', 'General Assessment'],
+          suggestedActions: language === 'hi'
+            ? ['डॉक्टर से परामर्श लें', 'दवाओं की जांच OCR से करें', 'अपॉइंटमेंट बुक करें']
+            : ['Consult Specialist Physician', 'Verify Prescription via OCR', 'Book OPD Appointment'],
+          timestamp: new Date().toISOString()
+        };
+      }
+    } catch (e) {
+      // Graceful fallback to Python service or built-in engine
+    }
+
+    // 2. Try calling Python microservice if running
     try {
       const http = require('http');
       const postData = JSON.stringify({ message, language, patientContext, chatHistory });
@@ -699,7 +815,7 @@ class AICaseTakingService {
       // Graceful in-memory fallback
     }
 
-    // High-performance Built-in Clinical Logic Fallback
+    // 3. High-performance Built-in Clinical Logic Fallback
     const query = (message || '').trim().toLowerCase();
     const lang = (language || 'hi').toLowerCase();
     const triage = this.detectRedFlags(query);
