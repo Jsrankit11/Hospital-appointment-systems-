@@ -2,8 +2,7 @@ import React from 'react';
 import {
   CalendarCheck, FlaskConical, Droplet, CreditCard,
   ShieldCheck, Video, ArrowRight, Activity, Clock, CheckCircle2,
-  Mic, Flower2, FileText, Lock, User, Users, Sparkles, Star, MapPin,
-  Check, Heart, Sparkle, HeartPulse
+  Mic, Flower2, FileText, Lock, User, Users, Sparkles
 } from 'lucide-react';
 
 interface JSRHeroServicesProps {
@@ -39,404 +38,236 @@ export const JSRHeroServices: React.FC<JSRHeroServicesProps> = ({
   onOpenTriage,
   onOpenGeminiCopilot
 }) => {
-  return (
-    <section className="space-y-8">
-      
-      {/* ========================================================================= */}
-      {/* 1. HERO SECTION (Exact Match with Reference UI Design)                   */}
-      {/* ========================================================================= */}
-      <div className="relative rounded-[32px] sm:rounded-[40px] overflow-hidden bg-gradient-to-br from-emerald-50/90 via-teal-50/50 to-cyan-50/70 dark:from-slate-900 dark:via-slate-850 dark:to-slate-900 border border-emerald-100/90 dark:border-slate-800 p-6 sm:p-10 lg:p-12 shadow-sm transition-all">
-        
-        {/* Soft Decorative Ambient Circles */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-200/30 dark:bg-emerald-600/10 rounded-full blur-3xl pointer-events-none -z-0"></div>
-        <div className="absolute -bottom-10 right-0 w-80 h-80 bg-teal-200/30 dark:bg-teal-600/10 rounded-full blur-2xl pointer-events-none -z-0"></div>
+  const services = [
+    {
+      id: 'ai-copilot',
+      title: language === 'en' ? 'JSR AI Voice Medical Doctor' : 'जेएसआर एआई वॉयस मेडिकल डॉक्टर',
+      sub: language === 'en' ? 'Multilingual Voice Consultation' : 'इंसानी आवाज में त्वरित चिकित्सीय परामर्श',
+      desc: language === 'en' ? 'Instant natural Hindi/English voice consultation. Ask about symptoms, prescription safety, lab results, and differential diagnosis in real-time.' : 'इंसानी आवाज (हिन्दी व अन्य भाषाओं) में तत्काल मेडिकल उत्तर। लक्षण, दवाओं की सुरक्षा, और टेस्ट रिपोर्ट का त्वरित समाधान।',
+      icon: Sparkles,
+      image: '/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg',
+      color: 'from-teal-600 via-emerald-600 to-teal-800',
+      badge: language === 'en' ? '🎙️ VOICE AI' : '🎙️ वॉयस एआई',
+      action: onOpenGeminiCopilot || onOpenAICaseTaking
+    },
+    {
+      id: 'medikiosk-flagship',
+      title: language === 'en' ? 'MediKiosk – AI Patient Intake' : 'मेडीकियोस्क – एआई मरीज केस टेकिंग',
+      sub: language === 'en' ? 'Multilingual Voice, Touch & 1-Page Summary' : 'बहुभाषी आवाज, स्पर्श व 1-पेज क्लिनिकल सारांश',
+      desc: language === 'en' ? 'Complete clinical history taking before consultation. Adaptive SOCRATES questioning, emergency red flags, and physician-ready draft.' : 'परामर्श से पहले बहुभाषी वॉइस व टच द्वारा संपूर्ण केस टेकिंग। स्वचालित रेड-फ्लैग पहचान और डॉक्टर के लिए 1-पेज क्लिनिकल सारांश।',
+      icon: Mic,
+      image: '/images/SMS_NEW.png',
+      color: 'from-emerald-700 to-teal-800',
+      badge: language === 'en' ? '🌟 SIH FLAGSHIP' : '🌟 मुख्य सेवा',
+      action: onOpenMediKiosk || onOpenAICaseTaking || onBookAppointment
+    },
+    {
+      id: 'book',
+      title: language === 'en' ? 'Book Hospital Appointment' : 'अस्पताल अपॉइंटमेंट बुक करें',
+      sub: language === 'en' ? 'Online OPD Registration & Token' : 'ऑनलाइन ओपीडी पंजीकरण और टोकन',
+      desc: language === 'en' ? 'Fast online OPD registration across AIIMS, KEM, NIMHANS, CMC Vellore, and 500+ Indian apex hospitals.' : 'एम्स, केईएम, निमहंस, सीएमसी वेल्लोर और 500+ भारतीय अस्पतालों में त्वरित ओपीडी।',
+      icon: CalendarCheck,
+      image: '/images/ORS1.png',
+      color: 'from-emerald-600 to-teal-700',
+      badge: language === 'en' ? 'FAST & INSTANT' : 'त्वरित एवं सुगम',
+      action: onBookAppointment
+    },
+    {
+      id: 'ocr',
+      title: language === 'en' ? 'Document Scanner + AI OCR' : 'मेडिकल पर्चा व रिपोर्ट स्कैनर (OCR)',
+      sub: language === 'en' ? 'Prescription OCR & Drug Interactions' : 'हस्तलिखित पर्चे व दवाओं की जांच',
+      desc: language === 'en' ? 'Scan handwritten prescriptions and lab reports. Extracts medicines, highlights abnormal lab values, and flags fatal drug-drug interactions.' : 'पर्चे और लैब रिपोर्ट स्कैन करें। दवाइयों का विवरण, असामान्य जांच परिणाम और संभावित ड्रग इंटरैक्शन अलर्ट प्राप्त करें।',
+      icon: FileText,
+      image: '/images/97795-download-green.gif',
+      color: 'from-blue-600 to-indigo-700',
+      badge: language === 'en' ? '📄 SMART OCR' : '📄 स्मार्ट ओसीआर',
+      action: onOpenOCRScanner || onOpenLabReports
+    },
+    {
+      id: 'lab',
+      title: language === 'en' ? 'Diagnostic Lab Reports' : 'डायग्नोस्टिक लैब रिपोर्ट',
+      sub: language === 'en' ? 'View & Print Signed Reports' : 'हस्ताक्षरित रिपोर्ट देखें व प्रिंट करें',
+      desc: language === 'en' ? 'Retrieve verified Pathology, Biochemistry & Radiology slips with 1-click clean PDF printing.' : 'यूएचआईडी या मोबाइल नंबर द्वारा अपनी पैथोलॉजी और रेडियोलॉजी रिपोर्ट प्राप्त करें।',
+      icon: FlaskConical,
+      image: '/images/lab_report.gif',
+      color: 'from-blue-600 to-cyan-700',
+      badge: language === 'en' ? 'OFFICIAL PDF' : 'आधिकारिक पीडीएफ',
+      action: onOpenLabReports
+    },
+    {
+      id: 'blood',
+      title: language === 'en' ? 'Blood Bank Availability' : 'रक्त बैंक उपलब्धता',
+      sub: language === 'en' ? 'Real-Time Blood Stock Finder' : 'वास्तविक समय रक्त भंडार',
+      desc: language === 'en' ? 'Check live reserves of Whole Blood, Packed RBC, Platelets and Plasma across State Blood Banks.' : 'भारत भर के रक्त बैंकों में उपलब्ध रक्त इकाइयों की लाइव स्थिति जांचें।',
+      icon: Droplet,
+      image: '/images/blood_drop.gif',
+      color: 'from-rose-600 to-red-700',
+      badge: language === 'en' ? 'EMERGENCY 24/7' : 'आपातकालीन 24/7',
+      action: onOpenBloodAvailability
+    },
+    {
+      id: 'payment',
+      title: language === 'en' ? 'Instant Hospital Payments' : 'त्वरित अस्पताल भुगतान',
+      sub: language === 'en' ? 'Dynamic UPI QR & Tax Invoice' : 'डायनामिक यूपीआई क्यूआर एवं इनवॉइस',
+      desc: language === 'en' ? 'Pay OPD fees, diagnostic tests, or bed advance with Google Pay, PhonePe, Cards, or Cash.' : 'गूगल पे, फोनपे, कार्ड या कैश द्वारा अस्पताल शुल्क का तुरंत भुगतान करें।',
+      icon: CreditCard,
+      image: '/images/mobile_payment.gif',
+      color: 'from-purple-600 to-indigo-700',
+      badge: language === 'en' ? 'UPI / CARDS' : 'यूपीआई / कार्ड',
+      action: onOpenPaymentPortal
+    },
+    {
+      id: 'tele',
+      title: language === 'en' ? 'Doctor Tele-Consultation' : 'डॉक्टर वीडियो परामर्श',
+      sub: language === 'en' ? 'Video OPD from Home' : 'घर बैठे वीडियो ओपीडी',
+      desc: language === 'en' ? 'Connect with specialist cardiologists, neurologists, and pediatricians online via live video room.' : 'विशेषज्ञ डॉक्टरों से ऑनलाइन वीडियो परामर्श लें और ई-प्रिस्क्रिप्शन प्राप्त करें।',
+      icon: Video,
+      image: '/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg',
+      color: 'from-teal-600 to-emerald-700',
+      badge: language === 'en' ? 'VIDEO OPD' : 'वीडियो ओपीडी',
+      action: onOpenTeleconsult
+    },
+    {
+      id: 'ayush',
+      title: language === 'en' ? 'AYUSH / Ayurveda Case Taking' : 'आयुष / आयुर्वेद केस टेकिंग फ्रेमवर्क',
+      sub: language === 'en' ? 'Dashavidha Pariksha & Prakriti' : 'दशविध परीक्षा एवं वात-पित्त-कफ प्रकृति',
+      desc: language === 'en' ? 'Comprehensive Ayurvedic assessment: Prakriti dosha distribution, Agni, Koshta, Sara, Samhanana, and tailored Ahara-Vihara diet protocols.' : 'दशविध परीक्षा, जठराग्नि, कोष्ठ, एवं प्रकृति निर्धारण के साथ संपूर्ण आयुर्वेदिक निदान एवं आहार-विहार प्रोटोकॉल।',
+      icon: Flower2,
+      color: 'from-emerald-700 to-green-800',
+      badge: language === 'en' ? '🏥 AYUSH SPECIAL' : '🏥 आयुष विशिष्ट',
+      action: onOpenAyushIntake || onBookAppointment
+    }
+  ];
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
-          {/* Left Column: Heading, Subtitle, CTAs, Trust Checks */}
-          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
-            
-            {/* National Platform Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800 shadow-sm">
-              <span>🇮🇳</span>
-              <span>{language === 'en' ? "India's Smart Healthcare Platform" : "भारत का स्मार्ट डिजिटल स्वास्थ्य मंच"}</span>
+  return (
+    <section className="space-y-6">
+      
+      {/* Hero Welcome Banner */}
+      <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-teal-950 to-slate-900 border-2 border-emerald-500/30 text-white p-6 sm:p-10 shadow-2xl">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="max-w-3xl space-y-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">
+              <img src="/images/ORS1.png" alt="ORS" className="w-4 h-4 object-contain" />
+              <span>{language === 'en' ? 'JSR HEALTHCARE • OFFICIAL PORTAL' : 'जेएसआर हेल्थकेयर • आधिकारिक पोर्टल'}</span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
               {language === 'en' ? (
                 <>
-                  All-India <span className="text-emerald-600 dark:text-emerald-400">Hospital OPD Appointments</span> & Digital Health
+                  All-India <span className="text-emerald-400">Hospital OPD Appointments</span> & Digital Health
                 </>
               ) : (
                 <>
-                  अखिल भारतीय <span className="text-emerald-600 dark:text-emerald-400">अस्पताल ओपीडी अपॉइंटमेंट</span> एवं डिजिटल स्वास्थ्य
+                  अखिल भारतीय <span className="text-emerald-400">अस्पताल ओपीडी अपॉइंटमेंट</span> एवं स्वास्थ्य सेवा
                 </>
               )}
-            </h1>
+            </h2>
 
-            {/* Subtitle Description */}
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+            <p className="text-xs sm:text-base text-slate-300 leading-relaxed">
               {language === 'en'
-                ? "Book OPD appointments, use AI Voice Doctor, manage health records, access lab reports, and experience smarter healthcare — across 500+ Apex Hospitals in India."
-                : "एम्स एवं 500+ प्रमुख अस्पतालों में ऑनलाइन अपॉइंटमेंट बुक करें, एआई वॉयस डॉक्टर से परामर्श लें, लैब रिपोर्ट्स और डिजिटल स्वास्थ्य रिकॉर्ड आसानी से प्रबंधित करें।"}
+                ? 'Complete healthcare management system providing instant online appointment booking across 500+ apex hospitals, live blood bank stocks, diagnostic report downloads, and digital payment receipts.'
+                : '500+ प्रमुख अस्पतालों में ऑनलाइन अपॉइंटमेंट बुकिंग, लाइव ब्लड बैंक भंडार, डायग्नोस्टिक रिपोर्ट डाउनलोड और डिजिटल भुगतान रसीद की संपूर्ण सुविधा।'}
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-1">
+            <div className="flex flex-wrap gap-3 pt-2">
               <button
-                onClick={onBookAppointment}
-                className="flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-lg shadow-emerald-600/25 transition transform hover:-translate-y-0.5 cursor-pointer"
+                onClick={onOpenMediKiosk || onBookAppointment}
+                className="flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 font-black text-sm shadow-xl shadow-teal-500/30 transition transform hover:-translate-y-0.5 border border-teal-200"
               >
-                <span>{language === 'en' ? "Book OPD Appointment" : "ओपीडी अपॉइंटमेंट बुक करें"}</span>
+                <Mic className="w-4 h-4 text-slate-950" />
+                <span>{language === 'en' ? 'Start MediKiosk Patient Intake' : 'मेडीकियोस्क मरीज केस टेकिंग'}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
-
               <button
-                onClick={onOpenGeminiCopilot || onOpenAICaseTaking}
-                className="flex items-center gap-2 px-5 sm:px-6 py-3.5 rounded-full bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-sm sm:text-base border border-slate-200 dark:border-slate-700 shadow-sm transition transform hover:-translate-y-0.5 cursor-pointer"
+                onClick={onBookAppointment}
+                className="flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm shadow-xl shadow-emerald-600/30 transition transform hover:-translate-y-0.5"
               >
-                <div className="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
-                  <Mic className="w-3.5 h-3.5" />
-                </div>
-                <span>{language === 'en' ? "Try AI Voice Doctor" : "एआई वॉयस डॉक्टर से पूछें"}</span>
+                <span>{language === 'en' ? 'Book OPD Appointment Now' : 'ओपीडी अपॉइंटमेंट बुक करें'}</span>
+              </button>
+              <button
+                onClick={onOpenPaymentPortal}
+                className="flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-slate-800/90 hover:bg-slate-700 text-white font-bold text-sm border border-slate-700 transition"
+              >
+                <CreditCard className="w-4 h-4 text-emerald-400" />
+                <span>{language === 'en' ? 'Pay Hospital Fees' : 'शुल्क का भुगतान करें'}</span>
               </button>
             </div>
-
-            {/* Trust Bullet Row */}
-            <div className="pt-2 grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-6 gap-y-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>Fast & Easy</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>Trusted by 500+ Hospitals</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Lock className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>Secure & Private</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>Available in 28+ States</span>
-              </div>
-            </div>
-
           </div>
 
-          {/* Right Column: Doctor Portrait with Floating Badges & Quotes */}
-          <div className="lg:col-span-5 flex justify-center items-center relative">
-            
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px]">
-              
-              {/* Organic Soft Emerald Blob Shape */}
-              <div className="w-full aspect-square rounded-[36px] bg-gradient-to-tr from-emerald-200/70 via-teal-300/40 to-cyan-200/60 dark:from-emerald-900/30 dark:to-teal-900/20 p-3 shadow-xl overflow-hidden relative">
+          {/* Right Banner Visual */}
+          <div className="hidden lg:flex flex-col items-center gap-3 shrink-0">
+            <div className="relative group">
+              <div className="w-44 h-44 rounded-3xl overflow-hidden border-2 border-emerald-500/40 shadow-2xl bg-slate-800 p-2">
                 <img
-                  src="/images/a7003b54-5f7b-4907-a0fa-8f81f1b1758c.jpg"
-                  alt="Doctor AI Assistant"
-                  className="w-full h-full object-cover rounded-[30px]"
+                  src="/images/SMS_NEW.png"
+                  alt="JSR Healthcare"
+                  className="w-full h-full object-contain rounded-2xl"
                 />
               </div>
-
-              {/* Floating Badge 1: Top Left AI Voice Doctor */}
-              <div 
-                onClick={onOpenGeminiCopilot || onOpenAICaseTaking}
-                className="absolute -top-3 -left-4 sm:-left-6 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl shadow-xl border border-emerald-100 dark:border-slate-800 flex items-center gap-2.5 cursor-pointer hover:scale-105 transition duration-300"
-              >
-                <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/30 shrink-0">
-                  <Mic className="w-5 h-5 animate-pulse" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-black text-slate-900 dark:text-white leading-none">AI Voice Doctor</h4>
-                  <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">Speak. We Listen. Better Healthcare.</p>
-                </div>
+              <div className="absolute -bottom-3 -right-3 w-16 h-16 rounded-2xl overflow-hidden border-2 border-teal-400 shadow-xl">
+                <img
+                  src="/images/6f858892-2750-45dc-b658-9ec10bca1d4a.jpg"
+                  alt="Doctor"
+                  className="w-full h-full object-cover"
+                />
               </div>
-
-              {/* Floating Badge 2: Bottom Right Book OPD */}
-              <div 
-                onClick={onBookAppointment}
-                className="absolute -bottom-3 -right-2 sm:-right-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl shadow-xl border border-emerald-100 dark:border-slate-800 flex items-center gap-2.5 cursor-pointer hover:scale-105 transition duration-300"
-              >
-                <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shadow-sm shrink-0">
-                  <CalendarCheck className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-black text-slate-900 dark:text-white leading-none">Book OPD</h4>
-                  <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">Anywhere, Anytime</p>
-                </div>
-              </div>
-
-              {/* Floating Quote Right Top */}
-              <div className="absolute top-2 -right-6 sm:-right-8 bg-emerald-900/90 text-white text-[11px] font-bold px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm hidden sm:flex items-center gap-1.5 border border-emerald-500/40">
-                <span>"Technology for a Healthier India"</span>
-                <Heart className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400" />
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 2. STATS BAR (White Card Bar Matching Screenshot)                        */}
-      {/* ========================================================================= */}
-      <div className="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-4 sm:p-6 shadow-sm">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 dark:divide-slate-800">
-          
-          {/* Stat 1: Apex Hospitals */}
-          <div className="flex items-center gap-3.5 pt-2 sm:pt-0 sm:px-4">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
-              <CalendarCheck className="w-6 h-6" />
-            </div>
-            <div>
-              <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">500+</div>
-              <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">Apex Hospitals</div>
             </div>
           </div>
-
-          {/* Stat 2: Patients Served */}
-          <div className="flex items-center gap-3.5 pt-2 sm:pt-0 sm:px-4">
-            <div className="w-12 h-12 rounded-2xl bg-sky-50 dark:bg-sky-950/50 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0">
-              <Users className="w-6 h-6" />
-            </div>
-            <div>
-              <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">10M+</div>
-              <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">Patients Served</div>
-            </div>
-          </div>
-
-          {/* Stat 3: States & UTs */}
-          <div className="flex items-center gap-3.5 pt-2 sm:pt-0 sm:px-4">
-            <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-              <MapPin className="w-6 h-6" />
-            </div>
-            <div>
-              <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">28</div>
-              <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">States & UTs</div>
-            </div>
-          </div>
-
-          {/* Stat 4: User Satisfaction */}
-          <div className="flex items-center gap-3.5 pt-2 sm:pt-0 sm:px-4">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
-              <Star className="w-6 h-6 fill-emerald-500 text-emerald-500" />
-            </div>
-            <div>
-              <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">4.8 ★</div>
-              <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">User Satisfaction</div>
-            </div>
-          </div>
-
         </div>
       </div>
 
-      {/* ========================================================================= */}
-      {/* 3. OUR KEY SERVICES (4 Clean Pastel Cards from Reference Screenshot)      */}
-      {/* ========================================================================= */}
-      <div className="space-y-5">
-        
-        <div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Our Key Services
-          </h2>
-          <p className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1">
-            Everything you need for better healthcare, in one place.
-          </p>
-        </div>
+      {/* Core Service Cards Grid with Project Images */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((s) => {
+          const Icon = s.icon;
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          
-          {/* Card 1: Book OPD Appointment (Mint/Green Tint) */}
-          <div
-            onClick={onBookAppointment}
-            className="rounded-3xl p-6 bg-emerald-50/80 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/50 hover:shadow-xl hover:border-emerald-300 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
-          >
-            <div>
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/20 mb-4 group-hover:scale-110 transition-transform">
-                <CalendarCheck className="w-6 h-6" />
-              </div>
-              <h3 className="text-base font-extrabold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                Book OPD Appointment
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
-                Instant booking at government and private hospitals across India.
-              </p>
-            </div>
-            <div className="mt-5 pt-3 border-t border-emerald-200/50 dark:border-emerald-800/40 flex items-center text-xs font-bold text-emerald-700 dark:text-emerald-300 group-hover:gap-2 transition-all">
-              <span>Book Now</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
-            </div>
-          </div>
+          return (
+            <div
+              key={s.id}
+              onClick={s.action}
+              className="group relative rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 shadow-md hover:shadow-2xl hover:border-emerald-500/60 transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden"
+            >
+              <div>
+                <div className="flex items-start justify-between gap-3 mb-4">
+                  <div className="w-14 h-14 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 p-1 bg-white dark:bg-slate-800 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                    {s.image ? (
+                      <img
+                        src={s.image}
+                        alt={s.title}
+                        className="w-full h-full object-contain rounded-xl"
+                      />
+                    ) : (
+                      <div className={`w-full h-full rounded-xl bg-gradient-to-br ${s.color} text-white flex items-center justify-center`}>
+                        <Icon className="w-6 h-6" />
+                      </div>
+                    )}
+                  </div>
 
-          {/* Card 2: MediKiosk – AI Patient Intake (Sky Blue Tint) */}
-          <div
-            onClick={onOpenMediKiosk || onOpenAICaseTaking}
-            className="rounded-3xl p-6 bg-sky-50/80 dark:bg-sky-950/30 border border-sky-100 dark:border-sky-900/50 hover:shadow-xl hover:border-sky-300 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
-          >
-            <div>
-              <div className="w-12 h-12 rounded-2xl bg-sky-500 text-white flex items-center justify-center shadow-md shadow-sky-500/20 mb-4 group-hover:scale-110 transition-transform">
-                <Mic className="w-6 h-6" />
-              </div>
-              <h3 className="text-base font-extrabold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
-                MediKiosk – AI Patient Intake
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
-                AI-powered case taking in multiple Indian languages with summary output.
-              </p>
-            </div>
-            <div className="mt-5 pt-3 border-t border-sky-200/50 dark:border-sky-800/40 flex items-center text-xs font-bold text-sky-700 dark:text-sky-300 group-hover:gap-2 transition-all">
-              <span>Start Now</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
-            </div>
-          </div>
-
-          {/* Card 3: Lab Reports & Health Records (Warm Peach/Amber Tint) */}
-          <div
-            onClick={onOpenLabReports}
-            className="rounded-3xl p-6 bg-amber-50/80 dark:bg-amber-950/30 border border-amber-100 dark:border-amber-900/50 hover:shadow-xl hover:border-amber-300 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
-          >
-            <div>
-              <div className="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-md shadow-amber-500/20 mb-4 group-hover:scale-110 transition-transform">
-                <FileText className="w-6 h-6" />
-              </div>
-              <h3 className="text-base font-extrabold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
-                Lab Reports & Health Records
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
-                Access and download your verified Pathology & Radiology slips anytime.
-              </p>
-            </div>
-            <div className="mt-5 pt-3 border-t border-amber-200/50 dark:border-amber-800/40 flex items-center text-xs font-bold text-amber-700 dark:text-amber-300 group-hover:gap-2 transition-all">
-              <span>View Reports</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
-            </div>
-          </div>
-
-          {/* Card 4: AI Voice Medical Doctor (Soft Lavender/Purple Tint) */}
-          <div
-            onClick={onOpenGeminiCopilot || onOpenAICaseTaking}
-            className="rounded-3xl p-6 bg-purple-50/80 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900/50 hover:shadow-xl hover:border-purple-300 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
-          >
-            <div>
-              <div className="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-md shadow-purple-500/20 mb-4 group-hover:scale-110 transition-transform">
-                <Activity className="w-6 h-6" />
-              </div>
-              <h3 className="text-base font-extrabold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                AI Voice Medical Doctor
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
-                Get basic health guidance, prescription checks, and symptoms advice with AI.
-              </p>
-            </div>
-            <div className="mt-5 pt-3 border-t border-purple-200/50 dark:border-purple-800/40 flex items-center text-xs font-bold text-purple-700 dark:text-purple-300 group-hover:gap-2 transition-all">
-              <span>Try Now</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 4. MEDIKIOSK FEATURE BANNER (Matching Reference Screenshot)                */}
-      {/* ========================================================================= */}
-      <div className="rounded-[32px] overflow-hidden bg-gradient-to-r from-teal-50/90 via-cyan-50/60 to-emerald-50/80 dark:from-slate-900 dark:via-teal-950/40 dark:to-slate-900 border border-teal-200/70 dark:border-teal-900/40 p-6 sm:p-10 shadow-sm relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          {/* Left Feature Description */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-teal-100 dark:bg-teal-950/80 text-teal-800 dark:text-teal-300">
-              <span>Smart Hospital Reception</span>
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-              MediKiosk <br />
-              <span className="text-teal-700 dark:text-teal-400">AI Patient Intake</span>
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Talk, Type or Touch – Your Health, Your Language. Pre-consultation intake with SOCRATES questioning & AYUSH integration.
-            </p>
-            <div>
-              <button
-                onClick={onOpenMediKiosk || onOpenAICaseTaking}
-                className="px-6 py-3 rounded-full bg-slate-900 dark:bg-teal-600 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center gap-2"
-              >
-                <span>Learn More</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Center MediKiosk Mockup */}
-          <div className="lg:col-span-4 flex justify-center">
-            <div className="relative w-full max-w-[260px] bg-slate-950 rounded-3xl p-3 shadow-2xl border-4 border-slate-800">
-              <div className="bg-slate-900 rounded-2xl p-4 text-white text-center space-y-3">
-                <div className="w-10 h-10 mx-auto rounded-xl bg-emerald-600 flex items-center justify-center">
-                  <HeartPulse className="w-6 h-6 text-white" />
+                  <span className="px-3 py-1 rounded-full text-[10px] font-black bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 uppercase tracking-wider border border-slate-200 dark:border-slate-700">
+                    {s.badge}
+                  </span>
                 </div>
-                <div>
-                  <h4 className="text-xs font-black text-white">JSR Healthcare</h4>
-                  <p className="text-[9px] text-slate-400">MediKiosk Touch Station</p>
-                </div>
-                <button
-                  onClick={onOpenMediKiosk || onOpenAICaseTaking}
-                  className="w-full py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black shadow-lg"
-                >
-                  Start Patient Intake
-                </button>
+
+                <h3 className="text-lg font-extrabold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                  {s.title}
+                </h3>
+                <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mt-0.5">
+                  {s.sub}
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                  {s.desc}
+                </p>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span className="text-xs font-black text-slate-700 dark:text-slate-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 flex items-center gap-1.5 transition-colors">
+                  <span>{language === 'en' ? 'Open Service' : 'सेवा खोलें'}</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </span>
               </div>
             </div>
-          </div>
-
-          {/* Right Checklist */}
-          <div className="lg:col-span-3 space-y-2.5">
-            {[
-              "Voice + Text Input",
-              "Multilingual Support (8+ Languages)",
-              "AYUSH / Ayurvedic Assessment",
-              "ABDM & ABHA Card Ready",
-              "Easy for Everyone"
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-2 text-xs font-bold text-slate-800 dark:text-slate-200">
-                <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
-                  <Check className="w-3 h-3 stroke-[3]" />
-                </div>
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 5. FOOTER TRUST FEATURES STRIP (Exact Match from Reference Screenshot)    */}
-      {/* ========================================================================= */}
-      <div className="pt-2 pb-4 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-bold text-slate-600 dark:text-slate-400 border-t border-slate-200/60 dark:border-slate-800">
-        <div className="flex items-center gap-1.5">
-          <div className="w-4 h-4 rounded bg-emerald-500 text-white flex items-center justify-center text-[10px]">✓</div>
-          <span>Modern & Clean Design</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span>📱</span>
-          <span>Fully Responsive</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span>⚡</span>
-          <span>Fast & Smooth UI</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <ShieldCheck className="w-4 h-4 text-emerald-600" />
-          <span>Trusted & Secure</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <Heart className="w-4 h-4 text-emerald-600 fill-emerald-600" />
-          <span>User Friendly Experience</span>
-        </div>
+          );
+        })}
       </div>
 
     </section>
